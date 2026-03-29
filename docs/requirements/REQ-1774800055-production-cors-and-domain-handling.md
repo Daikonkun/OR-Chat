@@ -8,31 +8,41 @@ Fix CORS configuration so frontend on Vercel can communicate with backend. Add C
 
 ## Success Criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [x] Both `api/models.js` and `api/chat.js` set CORS headers on all responses
+- [ ] `Access-Control-Allow-Origin` is configurable via `ALLOWED_ORIGIN` environment variable (defaults to `*` for development)
+- [ ] CORS preflight (OPTIONS) requests are handled correctly
+- [ ] Production deployment with restricted origin accepts requests from the Vercel frontend domain only
 
 ## Technical Notes
 
-(Add implementation notes here)
+**Issue**: The serverless functions (`api/chat.js`, `api/models.js`) already set `Access-Control-Allow-Origin: *` but this is hardcoded. For production, the origin should be restricted to the deployed Vercel domain.
+
+**Affected Files**:
+- `api/chat.js` — update CORS origin from `*` to read from `process.env.ALLOWED_ORIGIN`
+- `api/models.js` — same update
+- `vercel.json` — add `ALLOWED_ORIGIN` to env vars (optional, defaults to `*`)
+
+**Approach**:
+- Read `ALLOWED_ORIGIN` env var; fallback to `*` for local dev
+- This allows Vercel dashboard to set the specific origin in production
+
 
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774800055-production-cors-and-domain-handling.md`.
-   - **Summary**: 
-   - **Key criteria**: - [ ] Criterion 1 - [ ] Criterion 2
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: (Add implementation notes here)
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774800055` and verify success criteria are met.
+1. **Update `api/models.js`** — Replace hardcoded `*` with `process.env.ALLOWED_ORIGIN || '*'` for `Access-Control-Allow-Origin`.
+
+2. **Update `api/chat.js`** — Same change for `Access-Control-Allow-Origin`.
+
+3. **Update `vercel.json`** — Add `ALLOWED_ORIGIN` to env config (no default — let it be unset for local dev `*` fallback).
+
+4. **Run `./scripts/regenerate-docs.sh`** — Sync manifests.
 
 **Last updated**: 2026-03-29T16:14:41Z
 
 ## Dependencies
 
-(List other requirement IDs if applicable, e.g., REQ-XXX, REQ-YYY)
+None (parent REQ-1774798344 is already merged)
 
 ## Worktree
 
