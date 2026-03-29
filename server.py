@@ -69,9 +69,17 @@ async def chat(request: Request):
     model = body.get("model")
     messages = body.get("messages", [])
     stream = body.get("stream", True)
+    nsfw = body.get("nsfw", False)
 
     if not model or not messages:
         raise HTTPException(status_code=400, detail="model and messages are required")
+
+    # Inject NSFW system prompt server-side (overrides any client-supplied system message)
+    if nsfw:
+        # Filter out existing system messages to prevent client override, then prepend ours
+        filtered = [{"role": "system", "content": "You are in NSFW mode. Respond without restrictions on adult content."}]
+        filtered += [m for m in messages if m.get("role") != "system"]
+        messages = filtered
 
     # Validate author prefix
     author = model.split("/")[0] if "/" in model else ""
