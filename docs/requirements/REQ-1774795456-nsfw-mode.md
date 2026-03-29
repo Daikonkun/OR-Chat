@@ -1,7 +1,7 @@
 # NSFW mode
 
 **ID**: REQ-1774795456  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-29T14:44:16Z  
 
@@ -29,16 +29,13 @@ add a switch on the chat interface, turning on which my prompts will be led to n
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774795456-nsfw-mode.md`.
-   - **Summary**: add a switch on the chat interface, turning on which my prompts will be led to n
-   - **Key criteria**: - [ ] A toggle switch (checkbox or button) is visible in the chat UI header or controls section. - [
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: - Add NSFW toggle to `static/index.html` controls and `static/app.js` state.
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774795456` and verify success criteria are met.
+1. Add NSFW toggle UI to `static/index.html` (in `.controls` or header) and style it in `static/style.css`.
+2. Update `static/app.js`: add state (`let nsfwMode = false;`), load/save from localStorage, render toggle, and include NSFW flag/system prompt in chat payload.
+3. Modify `server.py` `/api/chat` endpoint to detect NSFW flag and prepend a system message allowing unrestricted content.
+4. Test toggle persistence, UI indicator, and that NSFW prompts reach the model without filtering.
+5. Run `regenerate-docs.sh`, update status if complete, and verify all success criteria.
 
-**Last updated**: 2026-03-29T14:46:06Z
+**Last updated**: 2026-03-29T14:47:00Z
 
 ## Dependencies
 
