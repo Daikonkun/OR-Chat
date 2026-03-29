@@ -5,13 +5,13 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (1)
+## IN_PROGRESS (0)
+
+
+## CODE_REVIEW (1)
 
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
-
-## CODE_REVIEW (0)
-
 
 ## MERGED (16)
 
@@ -73,5 +73,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 22
 - Deployed: 2 (9%)
-- In Progress: 1
+- In Progress: 0
 - Blocked: 0
