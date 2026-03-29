@@ -18,13 +18,17 @@ const chatContainer = document.getElementById('chat-container');
 const nsfwToggleBtn = document.getElementById('nsfw-toggle-btn');
 
 // Apply persisted NSFW toggle state
-if (nsfwMode) nsfwToggleBtn.classList.add('nsfw-active');
+if (nsfwMode) {
+  nsfwToggleBtn.classList.add('nsfw-active');
+  nsfwToggleBtn.title = 'NSFW mode ON';
+}
 
 // ── NSFW toggle ───────────────────────────────────────
 nsfwToggleBtn.addEventListener('click', () => {
   nsfwMode = !nsfwMode;
   localStorage.setItem('nsfwMode', nsfwMode);
   nsfwToggleBtn.classList.toggle('nsfw-active', nsfwMode);
+  nsfwToggleBtn.title = nsfwMode ? 'NSFW mode ON' : 'Toggle NSFW mode';
 });
 
 // ── Load models ───────────────────────────────────────
