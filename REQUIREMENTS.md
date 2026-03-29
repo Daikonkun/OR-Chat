@@ -25,12 +25,12 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774795456 | NSFW mode | MERGED | MEDIUM | feature/REQ-1774795456-nsfw-mode | 2026-03-29 | 2026-03-29 |
 | REQ-1774798344 | deployment | MERGED | MEDIUM | — | 2026-03-29 | 2026-03-29 |
 | REQ-1774800055 | production CORS and domain handling | MERGED | HIGH | feature/REQ-1774800055-production-cors-and-domain-handling | 2026-03-29 | 2026-03-29 |
-| REQ-1774800056 | environment-driven HTTP-Referer header | IN_PROGRESS | MEDIUM | feature/REQ-1774800056-environment-driven-http-referer-header | 2026-03-29 | 2026-03-29 |
+| REQ-1774800056 | environment-driven HTTP-Referer header | CODE_REVIEW | MEDIUM | — | 2026-03-29 | 2026-03-29 |
 
 ## Status Breakdown
 - **Proposed**: 0
-- **In Progress**: 1
-- **Code Review**: 0
+- **In Progress**: 0
+- **Code Review**: 1
 - **Merged**: 16
 - **Deployed**: 2
 - **Blocked**: 0
@@ -42,6 +42,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-29T16:23:36Z
+* Last updated: 2026-03-29T16:27:57Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`
