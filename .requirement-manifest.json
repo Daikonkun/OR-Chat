@@ -187,11 +187,12 @@
       "id": "REQ-1774795456",
       "name": "NSFW mode",
       "description": "add a switch on the chat interface, turning on which my prompts will be led to not-safe-for-work contents automatically",
-      "status": "PROPOSED",
+      "status": "IN_PROGRESS",
       "priority": "MEDIUM",
       "createdAt": "2026-03-29T14:44:16Z",
-      "updatedAt": "2026-03-29T14:44:16Z",
-      "notes": "Add NSFW toggle to UI + conditional system prompt injection in chat flow (index.html, app.js, server.py)."
+      "updatedAt": "2026-03-29T14:46:05Z",
+      "notes": "Add NSFW toggle to UI + conditional system prompt injection in chat flow (index.html, app.js, server.py).",
+      "worktreeId": "feature/REQ-1774795456-nsfw-mode"
     }
   ]
 }

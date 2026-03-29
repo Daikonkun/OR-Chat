@@ -2,13 +2,13 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (1)
+## PROPOSED (0)
+
+
+## IN_PROGRESS (1)
 
 * REQ-1774795456: NSFW mode (priority: MEDIUM)
-  - Worktree: none
-
-## IN_PROGRESS (0)
-
+  - Worktree: feature/REQ-1774795456-nsfw-mode
 
 ## CODE_REVIEW (0)
 
@@ -67,5 +67,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 19
 - Deployed: 2 (10%)
-- In Progress: 0
+- In Progress: 1
 - Blocked: 0
