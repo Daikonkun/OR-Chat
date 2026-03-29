@@ -201,7 +201,7 @@
       "status": "MERGED",
       "priority": "MEDIUM",
       "createdAt": "2026-03-29T15:32:24Z",
-      "updatedAt": "2026-03-30T00:00:00Z",
+      "updatedAt": "2026-03-29T16:00:00Z",
       "notes": "Deploy static frontend to Vercel with self-contained serverless API functions (api/models.js, api/chat.js)."
     },
     {
@@ -210,8 +210,8 @@
       "description": "Fix CORS configuration so frontend on Vercel can communicate with backend. Add CORSMiddleware to FastAPI with allow_origins configurable via environment. Source: code-review. Severity: HIGH. Evidence: server.py has no CORS config; requests from Vercel-deployed frontend will be blocked.",
       "status": "PROPOSED",
       "priority": "HIGH",
-      "createdAt": "2026-03-30T00:00:00Z",
-      "updatedAt": "2026-03-30T00:00:01Z"
+      "createdAt": "2026-03-29T16:00:55Z",
+      "updatedAt": "2026-03-29T16:00:55Z"
     },
     {
       "id": "REQ-1774800056",
@@ -219,8 +219,8 @@
       "description": "Make HTTP-Referer and X-Title headers environment-driven so they reflect the actual deployment origin. Source: code-review. Severity: HIGH. Evidence: server.py hardcodes HTTP-Referer to localhost:8888 which misleads OpenRouter in production.",
       "status": "PROPOSED",
       "priority": "MEDIUM",
-      "createdAt": "2026-03-30T00:00:02Z",
-      "updatedAt": "2026-03-30T00:00:02Z"
+      "createdAt": "2026-03-29T16:00:56Z",
+      "updatedAt": "2026-03-29T16:00:56Z"
     }
   ]
 }
