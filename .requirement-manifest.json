@@ -198,12 +198,29 @@
       "id": "REQ-1774798344",
       "name": "deployment",
       "description": "prepare a deployment of this chat to vercel",
-      "status": "IN_PROGRESS",
+      "status": "MERGED",
       "priority": "MEDIUM",
       "createdAt": "2026-03-29T15:32:24Z",
-      "updatedAt": "2026-03-29T15:39:54Z",
-      "notes": "Deploy static frontend to Vercel with API proxy considerations; evaluate serverless vs standalone backend.",
-      "worktreeId": "feature/REQ-1774798344-deployment"
+      "updatedAt": "2026-03-30T00:00:00Z",
+      "notes": "Deploy static frontend to Vercel with self-contained serverless API functions (api/models.js, api/chat.js)."
+    },
+    {
+      "id": "REQ-1774800055",
+      "name": "production CORS and domain handling",
+      "description": "Fix CORS configuration so frontend on Vercel can communicate with backend. Add CORSMiddleware to FastAPI with allow_origins configurable via environment. Source: code-review. Severity: HIGH. Evidence: server.py has no CORS config; requests from Vercel-deployed frontend will be blocked.",
+      "status": "PROPOSED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-30T00:00:00Z",
+      "updatedAt": "2026-03-30T00:00:00Z"
+    },
+    {
+      "id": "REQ-1774800056",
+      "name": "environment-driven HTTP-Referer header",
+      "description": "Make HTTP-Referer and X-Title headers environment-driven so they reflect the actual deployment origin. Source: code-review. Severity: HIGH. Evidence: server.py hardcodes HTTP-Referer to localhost:8888 which misleads OpenRouter in production.",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T00:00:00Z",
+      "updatedAt": "2026-03-30T00:00:00Z"
     }
   ]
 }
