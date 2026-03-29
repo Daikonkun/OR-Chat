@@ -1,7 +1,7 @@
 # deployment
 
 **ID**: REQ-1774798344  
-**Status**: PROPOSED  
+**Status**: IN_PROGRESS  
 **Priority**: MEDIUM  
 **Created**: 2026-03-29T15:32:24Z  
 

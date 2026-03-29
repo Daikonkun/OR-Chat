@@ -24,6 +24,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774774148: Review follow-up: fix manifest inconsistencies and ghost command
 * [MERGED] REQ-1774775901: add /work-on command
 * [MERGED] REQ-1774795456: NSFW mode
+* [IN_PROGRESS] REQ-1774798344: deployment
 
 ## Low Priority
 * [MERGED] REQ-1774632175: Review follow-up: polish upgrade guide in README
