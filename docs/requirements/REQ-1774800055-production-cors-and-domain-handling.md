@@ -3,10 +3,7 @@
 **ID**: REQ-1774800055  
 **Status**: PROPOSED  
 **Priority**: HIGH  
-**Created**: 2026-03-29T16:00:55Z  
-
-## Description
-
+**Created**: 2026-03-30T00:00:01Z
 Fix CORS configuration so frontend on Vercel can communicate with backend. Add CORSMiddleware to FastAPI with allow_origins configurable via environment. Source: code-review. Severity: HIGH. Evidence: server.py has no CORS config; requests from Vercel-deployed frontend will be blocked.
 
 ## Success Criteria

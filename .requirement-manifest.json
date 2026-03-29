@@ -211,7 +211,7 @@
       "status": "PROPOSED",
       "priority": "HIGH",
       "createdAt": "2026-03-30T00:00:00Z",
-      "updatedAt": "2026-03-30T00:00:00Z"
+      "updatedAt": "2026-03-30T00:00:01Z"
     },
     {
       "id": "REQ-1774800056",
@@ -219,8 +219,8 @@
       "description": "Make HTTP-Referer and X-Title headers environment-driven so they reflect the actual deployment origin. Source: code-review. Severity: HIGH. Evidence: server.py hardcodes HTTP-Referer to localhost:8888 which misleads OpenRouter in production.",
       "status": "PROPOSED",
       "priority": "MEDIUM",
-      "createdAt": "2026-03-30T00:00:00Z",
-      "updatedAt": "2026-03-30T00:00:00Z"
+      "createdAt": "2026-03-30T00:00:02Z",
+      "updatedAt": "2026-03-30T00:00:02Z"
     }
   ]
 }
