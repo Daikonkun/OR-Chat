@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenRouter Chat</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>OpenRouter Chat</h1>
+      <div class="controls">
+        <select id="model-select">
+          <option value="">Loading models…</option>
+        </select>
+        <button id="new-chat-btn" title="New chat">+ New</button>
+      </div>
+    </header>
+
+    <main id="chat-container">
+      <div id="messages"></div>
+    </main>
+
+    <footer>
+      <div id="image-preview-bar"></div>
+      <form id="chat-form">
+        <label id="upload-label" title="Attach image">
+          📎
+          <input type="file" id="image-input" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden>
+        </label>
+        <textarea id="message-input" rows="1" placeholder="Type a message…" autofocus></textarea>
+        <button type="submit" id="send-btn">Send</button>
+      </form>
+      <div id="drop-overlay">Drop image here</div>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+{
+  "$schema": ".requirement-manifest.schema.json",
+  "version": "1.0",
+  "projectName": "Vibe Project",
+  "requirements": [
+    {
+      "id": "REQ-1774628144",
+      "name": "Review follow-up: align slash commands with actual skill invocations",
+      "description": "Source: code-review. Severity: MEDIUM. Evidence: New skill docs advertise additional slash commands (/debug-repro, /debug-root-cause, /debug-validate, /manual-audit, /manual-changelog, /code-review-req, /code-review-create-threads) that are not implemented as standalone prompts/skills, which can mislead users. Required outcome: either implement these commands as actual prompts/agents or reword docs to describe them as workflow phases under /bug-fix, /update-manual, and /code-review.",
+      "status": "DEPLOYED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-27T16:15:44Z",
+      "updatedAt": "2026-03-28T00:20:00Z",
+      "worktreeId": "feature/REQ-1774628144-review-follow-up-align-slash-commands-with-actual-skill-invocations",
+      "deployedAt": "2026-03-28T00:20:00Z"
+    },
+    {
+      "id": "REQ-1774630000",
+      "name": "Update README for Vibe Master upgrade migration",
+      "description": "Update README so agents and users understand how to upgrade Vibe Master in an existing project that was built with an older Vibe Master version.",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-28T00:30:00Z",
+      "updatedAt": "2026-03-28T00:30:00Z",
+      "worktreeId": "feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration"
+    },
+    {
+      "id": "REQ-1774632175",
+      "name": "Review follow-up: polish upgrade guide in README",
+      "description": "Source: code-review of REQ-1774630000. Severity: LOW. Evidence: (1) Step 3 of the upgrade workflow tells users to place template files but gives no concrete command to fetch/clone them — users won't know how to obtain the latest template. (2) Step 1 creates a branch via checkout -b that is never used because Step 2 immediately creates a worktree with a different branch name. Required outcome: add a concrete fetch/clone example in Step 3, and simplify Step 1 to only create the safety tag (drop the unused branch).",
+      "status": "MERGED",
+      "priority": "LOW",
+      "createdAt": "2026-03-27T17:22:55Z",
+      "updatedAt": "2026-03-27T17:27:01Z",
+      "worktreeId": "feature/REQ-1774632175-review-follow-up-polish-upgrade-guide-in-readme"
+    },
+    {
+      "id": "REQ-1774636689",
+      "name": "Auto-create REQ from bug-fix when new feature needed",
+      "description": "During a /bug-fix session, if the bug fix requires implementing a new function or feature of the vibe project to complete, the debug skill should automatically create a new REQ to track that work and link it as a dependency.",
+      "status": "DEPLOYED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-27T18:38:09Z",
+      "updatedAt": "2026-03-27T18:47:35Z",
+      "worktreeId": "feature/REQ-1774636689-auto-create-req-from-bug-fix-when-new-feature-needed"
+    },
+    {
+      "id": "REQ-1774639240",
+      "name": "Add-requirement: populate spec sections after creation",
+      "description": "Source: code-review. Severity: HIGH. Evidence: add-requirement.prompt.md defines 5 workflow steps but none instruct the agent to populate spec file sections. create-requirement.sh writes static placeholders for Success Criteria, Technical Notes, Dependencies, and Worktree. Required outcome: add a prompt workflow step to derive success criteria, generate technical notes, link dependencies, and populate the manifest notes field after the script creates the spec file.",
+      "notes": "Fix is a prompt workflow change in add-requirement.prompt.md — add step 4 to enrich the spec file post-creation. Shell script stays as-is (scaffolding only).",
+      "status": "MERGED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-27T19:20:40Z",
+      "updatedAt": "2026-03-28T00:00:00Z",
+      "worktreeId": "feature/REQ-1774639240-add-requirement-populate-spec-sections-after-creation"
+    },
+    {
+      "id": "REQ-1774681642",
+      "name": "execution standard on working with a requirement",
+      "description": "the vibe master agent should come up with a development plan after reading the requirement, and append to according REQ file, so that whenever it comes back to the requirement, it can know where to start and what to work on",
+      "notes": "Persist a structured Development Plan section in each REQ spec so work can resume deterministically on revisit.",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-28T07:07:22Z",
+      "updatedAt": "2026-03-28T07:29:47Z",
+      "worktreeId": "feature/REQ-1774681642-execution-standard-on-working-with-a-requirement"
+    },
+    {
+      "id": "REQ-1774685792",
+      "name": "upgrade functions referring to obra's superpower agent",
+      "description": "read the repo https://github.com/obra/superpowers and suggest what functions can be referred to upgrade vibe master, yet not changing current workflow and standards significantly",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-28T08:16:32Z",
+      "updatedAt": "2026-03-28T08:47:37Z",
+      "notes": "Research superpowers skills (brainstorming, writing-plans, using-git-worktrees, systematic-debugging) for minimal-alignment upgrades to Vibe skills and prompts.",
+      "worktreeId": "feature/REQ-1774685792-upgrade-functions-referring-to-obra-s-superpower-agent"
+    },
+    {
+      "id": "REQ-1774770291",
+      "name": "Review follow-up: fix generate-plan.sh triple bug",
+      "description": "Source: code-review. Severity: HIGH. Evidence: (1) heredoc uses single-quoted EOF so variables are not expanded — plan text contains literal dollar-sign references instead of actual values. (2) awk system() calls reference unexported PLAN_FILE shell variable which is invisible to the subshell. (3) plan content is hardcoded to superpowers-research steps from REQ-1774685792 and is irrelevant for all other requirements. Required outcome: rewrite generate-plan.sh so it produces requirement-specific scaffolding with proper variable expansion, or remove the script and rely on the agent prompt workflow exclusively.",
+      "status": "MERGED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-29T07:44:51Z",
+      "updatedAt": "2026-03-29T07:55:15Z",
+      "worktreeId": "feature/REQ-1774770291-review-follow-up-fix-generate-plan-sh-triple-bug"
+    },
+    {
+      "id": "REQ-1774770298",
+      "name": "Review follow-up: separate manifest schema from data",
+      "description": "Source: code-review. Severity: HIGH. Evidence: .requirement-manifest.json and .worktree-manifest.json both embed JSON Schema keywords (properties, type, title, description) alongside actual data arrays at the same level. This fails JSON Schema validation and causes semantic ambiguity with the required keyword. Required outcome: move schema definitions to separate .schema.json files referenced by a top-level dollar-schema key, keeping manifests as pure data files.",
+      "status": "MERGED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-29T07:44:58Z",
+      "updatedAt": "2026-03-29T08:00:40Z"
+    },
+    {
+      "id": "REQ-1774770305",
+      "name": "Review follow-up: add missing prompt files for advertised slash commands",
+      "description": "Source: code-review. Severity: HIGH. Evidence: copilot-instructions.md lists /worktree-create and /worktree-prune as available slash commands, and worktree-manager/SKILL.md advertises /worktree-status, but no corresponding .prompt.md files exist. REQ-1774628144 (DEPLOYED) was supposed to align commands but missed these three. Required outcome: either create worktree-create.prompt.md, worktree-prune.prompt.md, and worktree-status.prompt.md, or remove these commands from copilot-instructions.md and SKILL.md.",
+      "status": "MERGED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-29T07:45:05Z",
+      "updatedAt": "2026-03-29T08:08:03Z"
+    },
+    {
+      "id": "REQ-1774770314",
+      "name": "Review follow-up: fix SKILL.md jq injection examples and stale status values",
+      "description": "Source: code-review. Severity: MEDIUM. Evidence: (1) requirement-tracker/SKILL.md and worktree-manager/SKILL.md use direct shell variable interpolation in jq programs instead of --arg, creating injection risk in documentation examples. (2) requirement-tracker/SKILL.md lists REVERTED as a valid transition target but REVERTED is not in the manifest schema enum or update-requirement-status.sh. Required outcome: update all SKILL.md jq examples to use --arg parameterization and replace REVERTED with CANCELLED.",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T07:45:14Z",
+      "updatedAt": "2026-03-29T08:39:38Z",
+      "worktreeId": "feature/REQ-1774770314-review-follow-up-fix-skill-md-jq-injection-examples-and-stale-status-values"
+    },
+    {
+      "id": "REQ-1774770322",
+      "name": "Review follow-up: unify slug generation and fix init-project gaps",
+      "description": "Source: code-review. Severity: MEDIUM. Evidence: (1) create-requirement.sh slug generation does not lowercase or collapse hyphens, while start-work.sh does — causing mismatched spec filenames vs branch names. (2) init-project.sh never creates docs/requirements/ directory or an initial git commit despite comments suggesting it should. (3) init-project.sh sed substitution is vulnerable to special characters in project name — should use jq --arg instead. (4) REQ-1774630000 manifest entry has updatedAt before createdAt. Required outcome: unify slug logic, complete init-project.sh setup, fix manifest timestamp, and add timestamp validation.",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T07:45:22Z",
+      "updatedAt": "2026-03-29T08:29:07Z",
+      "worktreeId": "feature/REQ-1774770322-review-follow-up-unify-slug-generation-and-fix-init-project-gaps"
+    },
+    {
+      "id": "REQ-1774772256",
+      "name": "Review follow-up: replace REVERTED with CANCELLED in orchestrator agent mode",
+      "description": "Source: code-review of REQ-1774770314. Severity: LOW. Evidence: .github/agents/orchestrator.agent.md line 114 lists REVERTED as a valid state transition (MERGED → REVERTED), but REVERTED is not in the .requirement-manifest.schema.json enum or update-requirement-status.sh. Required outcome: replace REVERTED with CANCELLED in orchestrator.agent.md state transitions to align with the schema and scripts.",
+      "status": "MERGED",
+      "priority": "LOW",
+      "createdAt": "2026-03-29T08:17:36Z",
+      "updatedAt": "2026-03-29T08:45:00Z",
+      "worktreeId": "feature/REQ-1774772256-review-follow-up-replace-reverted-with-cancelled-in-orchestrator-agent-mode"
+    },
+    {
+      "id": "REQ-1774774129",
+      "name": "Review follow-up: fix manifest inconsistencies and ghost command",
+      "description": "Source: code-review pass 2. Severity: MEDIUM. Evidence: (1) worktree-manifest has two stale ACTIVE entries for MERGED REQs. (2) copilot-instructions lists review-requirement with no prompt file. (3) worktree-prune prompt uses PRUNED status not in schema. (4) requirement-tracker SKILL.md heredoc uses single-quoted EOF. Required outcome: fix stale worktree entries, resolve ghost command, align PRUNED with schema, fix heredoc.",
+      "status": "CANCELLED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T08:48:49Z",
+      "updatedAt": "2026-03-29T09:15:58Z"
+    },
+    {
+      "id": "REQ-1774774139",
+      "name": "Review follow-up: fix manifest inconsistencies and ghost command",
+      "description": "Source: code-review pass 2. Severity: MEDIUM. Fix: (1) two stale ACTIVE worktree entries for MERGED REQs, (2) ghost review-requirement command in copilot-instructions, (3) PRUNED status not in worktree schema, (4) SKILL.md heredoc single-quoted EOF.",
+      "status": "CANCELLED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T08:48:59Z",
+      "updatedAt": "2026-03-29T09:16:04Z"
+    },
+    {
+      "id": "REQ-1774774145",
+      "name": "Review follow-up: fix manifest inconsistencies and ghost command",
+      "description": "Source: code-review pass 2. Severity: MEDIUM. Fix: (1) two stale ACTIVE worktree entries for MERGED REQs, (2) ghost review-requirement command in copilot-instructions, (3) PRUNED status not in worktree schema, (4) SKILL.md heredoc single-quoted EOF.",
+      "status": "CANCELLED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T08:49:05Z",
+      "updatedAt": "2026-03-29T09:16:07Z"
+    },
+    {
+      "id": "REQ-1774774148",
+      "name": "Review follow-up: fix manifest inconsistencies and ghost command",
+      "description": "Source: code-review pass 2. Severity: MEDIUM. Fix: (1) two stale ACTIVE worktree entries for MERGED REQs, (2) ghost review-requirement command in copilot-instructions, (3) PRUNED status not in worktree schema, (4) SKILL.md heredoc single-quoted EOF.",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T08:49:08Z",
+      "updatedAt": "2026-03-29T09:16:52Z",
+      "worktreeId": "feature/REQ-1774774148-review-follow-up-fix-manifest-inconsistencies-and-ghost-command"
+    },
+    {
+      "id": "REQ-1774775901",
+      "name": "add /work-on command",
+      "description": "add a command to work on a specific REQ until next status",
+      "status": "MERGED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T09:18:21Z",
+      "updatedAt": "2026-03-29T09:31:01Z",
+      "notes": "Add /work-on prompt file that loads a REQ spec, validates worktree, drives iterative implementation, and auto-advances status on completion.",
+      "worktreeId": "feature/REQ-1774775901-add-work-on-command"
+    },
+    {
+      "id": "REQ-1774795456",
+      "name": "NSFW mode",
+      "description": "add a switch on the chat interface, turning on which my prompts will be led to not-safe-for-work contents automatically",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-29T14:44:16Z",
+      "updatedAt": "2026-03-29T14:44:16Z",
+      "notes": "Add NSFW toggle to UI + conditional system prompt injection in chat flow (index.html, app.js, server.py)."
+    }
+  ]
+}
