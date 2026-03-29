@@ -27,3 +27,5 @@ logs/
 # Misc
 .env
 .env.*.local
+.vercel
+.env*.local

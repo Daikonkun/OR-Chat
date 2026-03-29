@@ -9,7 +9,7 @@
     { "src": "/api/chat", "dest": "/api/chat" }
   ],
   "env": {
-    "OPENROUTER_API_KEY": "@openrouter-api-key",
-    "ALLOWED_ORIGIN": "@allowed-origin"
+    "OPENROUTER_API_KEY": "",
+    "ALLOWED_ORIGIN": ""
   }
 }
