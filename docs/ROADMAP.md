@@ -26,7 +26,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774775901: add /work-on command
 * [MERGED] REQ-1774795456: NSFW mode
 * [MERGED] REQ-1774798344: deployment
-* [PROPOSED] REQ-1774800056: environment-driven HTTP-Referer header
+* [IN_PROGRESS] REQ-1774800056: environment-driven HTTP-Referer header
 
 ## Low Priority
 * [MERGED] REQ-1774632175: Review follow-up: polish upgrade guide in README
