@@ -2,6 +2,7 @@
 let conversationMessages = [];   // {role, content} — sent to API
 let pendingImages = [];          // {dataUrl, base64, mimeType}
 let isStreaming = false;
+let nsfwMode = localStorage.getItem('nsfwMode') === 'true';
 
 // ── DOM refs ──────────────────────────────────────────
 const modelSelect   = document.getElementById('model-select');
@@ -14,6 +15,17 @@ const previewBar    = document.getElementById('image-preview-bar');
 const newChatBtn    = document.getElementById('new-chat-btn');
 const footerEl      = document.querySelector('footer');
 const chatContainer = document.getElementById('chat-container');
+const nsfwToggleBtn = document.getElementById('nsfw-toggle-btn');
+
+// Apply persisted NSFW toggle state
+if (nsfwMode) nsfwToggleBtn.classList.add('nsfw-active');
+
+// ── NSFW toggle ───────────────────────────────────────
+nsfwToggleBtn.addEventListener('click', () => {
+  nsfwMode = !nsfwMode;
+  localStorage.setItem('nsfwMode', nsfwMode);
+  nsfwToggleBtn.classList.toggle('nsfw-active', nsfwMode);
+});
 
 // ── Load models ───────────────────────────────────────
 async function loadModels() {
@@ -108,6 +120,7 @@ async function streamAssistantResponse(model) {
       body: JSON.stringify({
         model,
         messages: conversationMessages,
+        nsfw: nsfwMode,
         stream: true,
       }),
     });

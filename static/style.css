@@ -74,6 +74,24 @@ header h1 {
 }
 #new-chat-btn:hover { opacity: 0.85; }
 
+/* NSFW toggle */
+#nsfw-toggle-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s;
+}
+
+#nsfw-toggle-btn.nsfw-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
 /* Chat area */
 main {
   flex: 1;
