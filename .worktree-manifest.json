@@ -25,6 +25,17 @@
       "createdAt": "2026-03-29T15:39:54Z",
       "status": "MERGED",
       "mergedAt": "2026-03-30T00:00:00Z"
+    },
+    {
+      "id": "feature/REQ-1774800055-production-cors-and-domain-handling",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774800055-production-cors-and-domain-handling",
+      "branch": "feature/REQ-1774800055-production-cors-and-domain-handling",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774800055"
+      ],
+      "createdAt": "2026-03-29T16:14:41Z",
+      "status": "ACTIVE"
     }
   ]
 }

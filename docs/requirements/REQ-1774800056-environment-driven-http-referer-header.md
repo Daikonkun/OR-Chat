@@ -1,7 +1,7 @@
 # environment-driven HTTP-Referer header
 
 **ID**: REQ-1774800056
-**Status**: PROPOSED
+**Status**: PROPOSED  
 **Priority**: MEDIUM
 **Created**: 2026-03-29T16:00:56Z
 Make HTTP-Referer and X-Title headers environment-driven so they reflect the actual deployment origin. Source: code-review. Severity: HIGH. Evidence: server.py hardcodes HTTP-Referer to localhost:8888 which misleads OpenRouter in production.

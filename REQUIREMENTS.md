@@ -23,13 +23,15 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774774148 | Review follow-up: fix manifest inconsistencies and ghost command | MERGED | MEDIUM | feature/REQ-1774774148-review-follow-up-fix-manifest-inconsistencies-and-ghost-command | 2026-03-29 | 2026-03-29 |
 | REQ-1774775901 | add /work-on command | MERGED | MEDIUM | feature/REQ-1774775901-add-work-on-command | 2026-03-29 | 2026-03-29 |
 | REQ-1774795456 | NSFW mode | MERGED | MEDIUM | feature/REQ-1774795456-nsfw-mode | 2026-03-29 | 2026-03-29 |
-| REQ-1774798344 | deployment | IN_PROGRESS | MEDIUM | feature/REQ-1774798344-deployment | 2026-03-29 | 2026-03-29 |
+| REQ-1774798344 | deployment | MERGED | MEDIUM | — | 2026-03-29 | 2026-03-29 |
+| REQ-1774800055 | production CORS and domain handling | IN_PROGRESS | HIGH | feature/REQ-1774800055-production-cors-and-domain-handling | 2026-03-29 | 2026-03-29 |
+| REQ-1774800056 | environment-driven HTTP-Referer header | PROPOSED | MEDIUM | — | 2026-03-29 | 2026-03-29 |
 
 ## Status Breakdown
-- **Proposed**: 0
+- **Proposed**: 1
 - **In Progress**: 1
 - **Code Review**: 0
-- **Merged**: 14
+- **Merged**: 15
 - **Deployed**: 2
 - **Blocked**: 0
 - **Backlog**: 0
@@ -40,6 +42,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-29T15:39:54Z
+* Last updated: 2026-03-29T16:14:41Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`

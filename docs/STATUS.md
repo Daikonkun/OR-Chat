@@ -2,24 +2,20 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (2)
+## PROPOSED (1)
 
-* REQ-1774800055: production CORS and domain handling (priority: HIGH)
-  - Worktree: none
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
 
 ## IN_PROGRESS (1)
 
-* REQ-1774798344: deployment (priority: MEDIUM)
-  - Worktree: feature/REQ-1774798344-deployment
+* REQ-1774800055: production CORS and domain handling (priority: HIGH)
+  - Worktree: feature/REQ-1774800055-production-cors-and-domain-handling
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774798344: deployment (priority: MEDIUM)
-  - Worktree: none
 
-## MERGED (14)
+## MERGED (15)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -49,6 +45,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: feature/REQ-1774775901-add-work-on-command
 * REQ-1774795456: NSFW mode (priority: MEDIUM)
   - Worktree: feature/REQ-1774795456-nsfw-mode
+* REQ-1774798344: deployment (priority: MEDIUM)
+  - Worktree: none
 
 ## DEPLOYED (2)
 
@@ -73,7 +71,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 20
-- Deployed: 2 (10%)
+- Total Requirements: 22
+- Deployed: 2 (9%)
 - In Progress: 1
 - Blocked: 0
