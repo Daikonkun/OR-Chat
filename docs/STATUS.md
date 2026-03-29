@@ -7,13 +7,13 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
 
-## IN_PROGRESS (1)
+## IN_PROGRESS (0)
+
+
+## CODE_REVIEW (1)
 
 * REQ-1774800055: production CORS and domain handling (priority: HIGH)
   - Worktree: feature/REQ-1774800055-production-cors-and-domain-handling
-
-## CODE_REVIEW (0)
-
 
 ## MERGED (15)
 
@@ -73,5 +73,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 22
 - Deployed: 2 (9%)
-- In Progress: 1
+- In Progress: 0
 - Blocked: 0
