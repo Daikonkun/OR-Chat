@@ -1,7 +1,7 @@
 # NSFW mode
 
 **ID**: REQ-1774795456  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-29T14:44:16Z  
 
