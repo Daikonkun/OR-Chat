@@ -13,6 +13,17 @@
       "createdAt": "2026-03-29T14:46:05Z",
       "status": "MERGED",
       "mergedAt": "2026-03-29T15:07:07Z"
+    },
+    {
+      "id": "feature/REQ-1774798344-deployment",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774798344-deployment",
+      "branch": "feature/REQ-1774798344-deployment",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774798344"
+      ],
+      "createdAt": "2026-03-29T15:39:54Z",
+      "status": "ACTIVE"
     }
   ]
 }

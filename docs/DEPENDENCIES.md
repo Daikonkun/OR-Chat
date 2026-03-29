@@ -40,3 +40,5 @@ REQ-1774775901: add /work-on command (no dependencies)
 
 REQ-1774795456: NSFW mode (no dependencies)
 
+REQ-1774798344: deployment (no dependencies)
+

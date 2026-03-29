@@ -5,8 +5,10 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (0)
+## IN_PROGRESS (1)
 
+* REQ-1774798344: deployment (priority: MEDIUM)
+  - Worktree: feature/REQ-1774798344-deployment
 
 ## CODE_REVIEW (0)
 
@@ -65,7 +67,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 19
+- Total Requirements: 20
 - Deployed: 2 (10%)
-- In Progress: 0
+- In Progress: 1
 - Blocked: 0
