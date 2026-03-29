@@ -9,6 +9,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774770291: Review follow-up: fix generate-plan.sh triple bug
 * [MERGED] REQ-1774770298: Review follow-up: separate manifest schema from data
 * [MERGED] REQ-1774770305: Review follow-up: add missing prompt files for advertised slash commands
+* [PROPOSED] REQ-1774800055: production CORS and domain handling
 
 ## Medium Priority
 * [DEPLOYED] REQ-1774628144: Review follow-up: align slash commands with actual skill invocations

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'Static frontend only - API served as serverless functions'",
+  "outputDirectory": "static",
+  "installCommand": "echo 'No dependencies needed for static deploy'",
+  "framework": null,
+  "routes": [
+    { "src": "/api/models", "dest": "/api/models" },
+    { "src": "/api/chat", "dest": "/api/chat" }
+  ],
+  "env": {
+    "OPENROUTER_API_KEY": "@openrouter-api-key"
+  },
+  "buildEnv": {}
+}

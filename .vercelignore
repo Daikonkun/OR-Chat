@@ -1,0 +1,33 @@
+# Backend files - FastAPI no longer used in production
+server.py
+requirements.txt
+.env
+.env.*
+*.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Config files
+.git/
+.gitignore
+.worktree-manifest.json
+.requirement-manifest.json
+copilot-instructions.md
+
+# Scripts
+scripts/
+
+# Node/Vercel
+node_modules/
+.vercel/
