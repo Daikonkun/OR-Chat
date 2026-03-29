@@ -100,8 +100,8 @@ async def chat(request: Request):
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:8888",
-        "X-Title": "OpenRouter Local Wrapper",
+        "HTTP-Referer": os.getenv("OPENROUTER_HTTP_REFERER", "http://localhost:8888"),
+        "X-Title": os.getenv("OPENROUTER_X_TITLE", "OpenRouter Local Wrapper"),
     }
 
     if stream:
