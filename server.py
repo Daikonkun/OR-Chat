@@ -80,7 +80,7 @@ def validate_xai_api_key(key: str) -> bool:
 # Track if we've warned about this invalid key to avoid duplicate warnings
 has_warned_about_invalid_key = False
 if XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
-    logger.warning(f"XAI_API_KEY format appears invalid: '{XAI_API_KEY}'")
+    logger.warning("XAI_API_KEY format appears invalid.")
     logger.warning("xAI API keys typically start with 'xai-' and contain alphanumeric characters.")
     logger.warning("Update your .env file with a valid key or this may cause API call failures.")
     has_warned_about_invalid_key = True
@@ -161,7 +161,7 @@ async def chat(request: Request):
     # Check if x-ai model is selected but XAI_API_KEY is invalid
     if author == "x-ai" and XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
         if not has_warned_about_invalid_key:
-            logger.warning(f"x-ai model selected but XAI_API_KEY format appears invalid: '{XAI_API_KEY}'")
+            logger.warning("x-ai model selected but XAI_API_KEY format appears invalid.")
             logger.warning("Falling back to OpenRouter API. Update your .env file with a valid xAI API key to use direct xAI API.")
     
     use_direct_xai = (author == "x-ai" and XAI_API_KEY and validate_xai_api_key(XAI_API_KEY))
