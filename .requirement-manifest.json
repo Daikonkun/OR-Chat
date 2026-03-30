@@ -288,10 +288,10 @@
       "id": "REQ-1774887470",
       "name": "Vercel direct xAI API and Grok Imagine support",
       "description": "Port the direct xAI API routing from server.py to the Vercel serverless functions (api/models.js and api/chat.js). When XAI_API_KEY is configured, x-ai models should route through the xAI API directly instead of OpenRouter. Additionally, add support for the Grok Imagine API for image generation. The api/models.js endpoint should expose the uses_direct_api flag matching server.py behavior.",
-      "status": "CODE_REVIEW",
+      "status": "MERGED",
       "priority": "HIGH",
       "createdAt": "2026-03-30T16:17:50Z",
-      "updatedAt": "2026-03-30T16:32:00Z",
+      "updatedAt": "2026-03-30T16:36:53Z",
       "notes": "Port server.py direct xAI routing to Vercel serverless (api/models.js, api/chat.js) + new api/imagine.js for Grok Imagine",
       "worktreeId": "feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support"
     },

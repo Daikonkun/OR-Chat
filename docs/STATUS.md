@@ -10,12 +10,10 @@ Kanban-style view of all requirements and their current state.
 ## IN_PROGRESS (0)
 
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774887470: Vercel direct xAI API and Grok Imagine support (priority: HIGH)
-  - Worktree: feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support
 
-## MERGED (23)
+## MERGED (24)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -63,6 +61,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 * REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
   - Worktree: feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation
+* REQ-1774887470: Vercel direct xAI API and Grok Imagine support (priority: HIGH)
+  - Worktree: feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support
 
 ## DEPLOYED (2)
 
