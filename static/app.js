@@ -411,6 +411,13 @@ messageInput.addEventListener('keydown', (e) => {
   }
 });
 
+// Show/hide imagine controls based on /imagine prefix
+messageInput.addEventListener('input', () => {
+  const show = messageInput.value.trimStart().startsWith('/imagine');
+  aspectSelect.classList.toggle('imagine-visible', show);
+  imagineBtn.classList.toggle('imagine-visible', show);
+});
+
 // ── Imagine button ────────────────────────────────────
 imagineBtn.addEventListener('click', async () => {
   if (isStreaming) return;
@@ -427,7 +434,9 @@ async function generateImage(prompt) {
   sendBtn.disabled = true;
   imagineBtn.disabled = true;
 
-  // Show user prompt
+  // Show user prompt and add to conversation history
+  const userMsg = { role: 'user', content: `/imagine ${prompt}` };
+  conversationMessages.push(userMsg);
   renderUserMessage(`/imagine ${prompt}`, []);
 
   // Create assistant message with loading state
@@ -484,6 +493,13 @@ async function generateImage(prompt) {
         revised.textContent = data.data[0].revised_prompt;
         contentEl.appendChild(revised);
       }
+
+      // Add to conversation history so LLM has context
+      const imageUrls = data.data.map(d => d.url).filter(Boolean);
+      conversationMessages.push({
+        role: 'assistant',
+        content: `[Generated image for: ${prompt}]${imageUrls.length ? '\n' + imageUrls.join('\n') : ''}`,
+      });
     } else {
       contentEl.innerHTML = '<span class="error-text">No images returned</span>';
     }

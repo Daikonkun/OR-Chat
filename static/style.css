@@ -311,7 +311,9 @@ footer.drag-over #drop-overlay {
   font-size: 0.8rem;
   cursor: pointer;
   width: 62px;
+  display: none;
 }
+#aspect-ratio-select.imagine-visible { display: inline-block; }
 
 #imagine-btn {
   background: var(--surface2);
@@ -321,7 +323,9 @@ footer.drag-over #drop-overlay {
   font-size: 1.1rem;
   cursor: pointer;
   transition: background 0.2s;
+  display: none;
 }
+#imagine-btn.imagine-visible { display: inline-block; }
 #imagine-btn:hover { background: var(--accent); }
 #imagine-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
