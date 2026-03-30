@@ -451,7 +451,7 @@ async function generateImage(prompt) {
     const resp = await fetch('/api/imagine', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt, aspect_ratio }),
+      body: JSON.stringify({ prompt, model: 'grok-imagine-image-pro', aspect_ratio }),
     });
 
     if (!resp.ok) {
