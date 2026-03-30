@@ -316,6 +316,15 @@
       "updatedAt": "2026-03-30T17:10:36Z",
       "notes": "Add /api/imagine endpoint to server.py and allow grok-imagine-image-pro model in api/imagine.js for image generation on both local and Vercel deployments",
       "worktreeId": "feature/REQ-1774889676-add-grok-imagine-support"
+    },
+    {
+      "id": "REQ-1774891701",
+      "name": "add login session",
+      "description": "add a login session to prevent abusive use of my API key",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T17:28:21Z",
+      "updatedAt": "2026-03-30T17:28:21Z"
     }
   ]
 }
