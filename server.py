@@ -39,6 +39,52 @@ if XAI_BASE_RAW:
 else:
     XAI_BASE = XAI_BASE_DEFAULT
 
+# Validate XAI_API_KEY format
+def validate_xai_api_key(key: str) -> bool:
+    """
+    Validate xAI API key format.
+    
+    Validation assumptions (based on xAI API key patterns as of 2026-03-30):
+    1. Keys start with 'xai-' prefix
+    2. Minimum total length of 8 characters (prefix + content)
+    3. Suffix after 'xai-' contains only alphanumeric characters and hyphens
+    
+    Note: These assumptions may need updating if xAI changes their key format.
+    This validation catches obviously invalid keys early while allowing flexibility.
+    
+    Args:
+        key: The API key to validate
+        
+    Returns:
+        bool: True if key appears valid, False otherwise
+    """
+    if not key:
+        return False
+    
+    # Check if key starts with 'xai-'
+    if not key.startswith('xai-'):
+        return False
+    
+    # Check minimum length (prefix + at least some content)
+    if len(key) < 8:
+        return False
+    
+    # Check that the part after 'xai-' contains only alphanumeric characters and hyphens
+    suffix = key[4:]  # Remove 'xai-'
+    if not all(c.isalnum() or c == '-' for c in suffix):
+        return False
+    
+    return True
+
+# Log warning if XAI_API_KEY format appears invalid
+# Track if we've warned about this invalid key to avoid duplicate warnings
+has_warned_about_invalid_key = False
+if XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
+    logger.warning("XAI_API_KEY format appears invalid.")
+    logger.warning("xAI API keys typically start with 'xai-' and contain alphanumeric characters.")
+    logger.warning("Update your .env file with a valid key or this may cause API call failures.")
+    has_warned_about_invalid_key = True
+
 ALLOWED_AUTHORS = {"x-ai", "deepseek"}
 
 app = FastAPI(title="OpenRouter Wrapper")
@@ -76,7 +122,7 @@ async def list_models():
                 "author": author,
                 "context_length": m.get("context_length"),
                 "supports_vision": "image" in json.dumps(m.get("architecture", {})),
-                "uses_direct_api": author == "x-ai" and bool(XAI_API_KEY),  # Indicate if direct xAI API will be used
+                "uses_direct_api": author == "x-ai" and XAI_API_KEY and validate_xai_api_key(XAI_API_KEY),  # Indicate if direct xAI API will be used
                 "prompt_price": pricing.get("prompt"),
                 "completion_price": pricing.get("completion"),
             }
@@ -112,7 +158,13 @@ async def chat(request: Request):
         raise HTTPException(status_code=400, detail=f"Model author '{author}' not allowed")
 
     # Determine which API to use
-    use_direct_xai = (author == "x-ai" and XAI_API_KEY)
+    # Check if x-ai model is selected but XAI_API_KEY is invalid
+    if author == "x-ai" and XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
+        if not has_warned_about_invalid_key:
+            logger.warning("x-ai model selected but XAI_API_KEY format appears invalid.")
+            logger.warning("Falling back to OpenRouter API. Update your .env file with a valid xAI API key to use direct xAI API.")
+    
+    use_direct_xai = (author == "x-ai" and XAI_API_KEY and validate_xai_api_key(XAI_API_KEY))
     
     if use_direct_xai:
         # Use direct xAI API
