@@ -46,3 +46,5 @@ REQ-1774800055: production CORS and domain handling (no dependencies)
 
 REQ-1774800056: environment-driven HTTP-Referer header (no dependencies)
 
+REQ-1774851880: allow picture output (no dependencies)
+
