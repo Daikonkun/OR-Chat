@@ -294,6 +294,15 @@
       "updatedAt": "2026-03-30T16:32:00Z",
       "notes": "Port server.py direct xAI routing to Vercel serverless (api/models.js, api/chat.js) + new api/imagine.js for Grok Imagine",
       "worktreeId": "feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support"
+    },
+    {
+      "id": "REQ-1774888513",
+      "name": "Frontend Grok Imagine UI",
+      "description": "Add UI elements to the chat frontend for triggering image generation via the /api/imagine endpoint. Source: code-review of REQ-1774887470. The imagine API backend exists but is unreachable from the UI. Required outcome: users can generate images from the chat interface using Grok Imagine, with prompt input, aspect ratio/resolution options, and inline image display.",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T16:35:13Z",
+      "updatedAt": "2026-03-30T16:35:13Z"
     }
   ]
 }
