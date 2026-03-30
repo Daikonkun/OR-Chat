@@ -20,9 +20,11 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
   - Worktree: feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (2)
 
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
+  - Worktree: none
+* REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
   - Worktree: none
 
 ## MERGED (16)
