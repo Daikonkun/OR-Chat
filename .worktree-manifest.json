@@ -157,6 +157,17 @@
       "createdAt": "2026-03-30T16:57:58Z",
       "status": "MERGED",
       "mergedAt": "2026-03-30T17:10:36Z"
+    },
+    {
+      "id": "feature/REQ-1774891701-add-login-session",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774891701-add-login-session",
+      "branch": "feature/REQ-1774891701-add-login-session",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774891701"
+      ],
+      "createdAt": "2026-03-30T17:31:26Z",
+      "status": "ACTIVE"
     }
   ]
 }

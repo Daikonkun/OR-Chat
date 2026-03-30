@@ -321,10 +321,12 @@
       "id": "REQ-1774891701",
       "name": "add login session",
       "description": "add a login session to prevent abusive use of my API key",
-      "status": "PROPOSED",
+      "status": "IN_PROGRESS",
       "priority": "MEDIUM",
       "createdAt": "2026-03-30T17:28:21Z",
-      "updatedAt": "2026-03-30T17:28:21Z"
+      "updatedAt": "2026-03-30T17:31:26Z",
+      "notes": "Password-gated session auth via signed cookie/JWT on both FastAPI and Vercel backends to prevent unauthorized API key usage.",
+      "worktreeId": "feature/REQ-1774891701-add-login-session"
     }
   ]
 }
