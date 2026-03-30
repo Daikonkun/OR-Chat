@@ -16,14 +16,12 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
   - Worktree: feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation
 
-## CODE_REVIEW (2)
+## CODE_REVIEW (1)
 
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
-* REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
-  - Worktree: feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output
 
-## MERGED (17)
+## MERGED (18)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -57,6 +55,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 * REQ-1774800055: production CORS and domain handling (priority: HIGH)
   - Worktree: feature/REQ-1774800055-production-cors-and-domain-handling
+* REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
+  - Worktree: feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output
 * REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
   - Worktree: none
 

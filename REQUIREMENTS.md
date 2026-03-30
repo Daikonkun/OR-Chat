@@ -27,7 +27,7 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774800055 | production CORS and domain handling | MERGED | HIGH | feature/REQ-1774800055-production-cors-and-domain-handling | 2026-03-29 | 2026-03-29 |
 | REQ-1774800056 | environment-driven HTTP-Referer header | CODE_REVIEW | MEDIUM | — | 2026-03-29 | 2026-03-29 |
 | REQ-1774851880 | allow picture output | IN_PROGRESS | MEDIUM | feature/REQ-1774851880-allow-picture-output | 2026-03-30 | 2026-03-30 |
-| REQ-1774855175 | Review follow-up: secure image URL validation in picture output | CODE_REVIEW | HIGH | feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output | 2026-03-30 | 2026-03-30 |
+| REQ-1774855175 | Review follow-up: secure image URL validation in picture output | MERGED | HIGH | feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output | 2026-03-30 | 2026-03-30 |
 | REQ-1774855194 | Review follow-up: proper base64 validation for image rendering | PROPOSED | HIGH | — | 2026-03-30 | 2026-03-30 |
 | REQ-1774855463 | x-ai-direct api | IN_PROGRESS | MEDIUM | feature/REQ-1774855463-x-ai-direct-api | 2026-03-30 | 2026-03-30 |
 | REQ-1774858151 | Review follow-up: verify and configure xAI API endpoint | MERGED | HIGH | — | 2026-03-30 | 2026-03-30 |
@@ -36,8 +36,8 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 ## Status Breakdown
 - **Proposed**: 1
 - **In Progress**: 3
-- **Code Review**: 2
-- **Merged**: 17
+- **Code Review**: 1
+- **Merged**: 18
 - **Deployed**: 2
 - **Blocked**: 0
 - **Backlog**: 0
@@ -48,6 +48,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-30T15:23:29Z
+* Last updated: 2026-03-30T15:31:06Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`

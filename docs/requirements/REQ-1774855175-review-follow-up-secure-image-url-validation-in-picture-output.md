@@ -1,7 +1,7 @@
 # Review follow-up: secure image URL validation in picture output
 
 **ID**: REQ-1774855175  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: HIGH  
 **Created**: 2026-03-30T07:19:35Z  
 
