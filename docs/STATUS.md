@@ -10,12 +10,10 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774855463: x-ai-direct api (priority: MEDIUM)
   - Worktree: feature/REQ-1774855463-x-ai-direct-api
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774851880: allow picture output (priority: MEDIUM)
-  - Worktree: feature/REQ-1774851880-allow-picture-output
 
-## MERGED (21)
+## MERGED (22)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -51,6 +49,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: feature/REQ-1774800055-production-cors-and-domain-handling
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
+* REQ-1774851880: allow picture output (priority: MEDIUM)
+  - Worktree: feature/REQ-1774851880-allow-picture-output
 * REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
   - Worktree: feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output
 * REQ-1774855194: Review follow-up: proper base64 validation for image rendering (priority: HIGH)

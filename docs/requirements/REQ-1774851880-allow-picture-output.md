@@ -1,7 +1,7 @@
 # allow picture output
 
 **ID**: REQ-1774851880  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T06:24:40Z  
 
