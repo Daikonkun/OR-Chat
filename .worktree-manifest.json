@@ -83,6 +83,17 @@
       "createdAt": "2026-03-30T08:23:42Z",
       "status": "MERGED",
       "mergedAt": "2026-03-30T09:18:48Z"
+    },
+    {
+      "id": "feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation",
+      "branch": "feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774858263"
+      ],
+      "createdAt": "2026-03-30T09:39:58Z",
+      "status": "ACTIVE"
     }
   ]
 }
