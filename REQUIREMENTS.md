@@ -34,10 +34,11 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774858263 | Review follow-up: add xAI API key format validation | MERGED | HIGH | feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation | 2026-03-30 | 2026-03-30 |
 | REQ-1774887470 | Vercel direct xAI API and Grok Imagine support | MERGED | HIGH | feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support | 2026-03-30 | 2026-03-30 |
 | REQ-1774888513 | Frontend Grok Imagine UI | MERGED | MEDIUM | feature/REQ-1774888513-frontend-grok-imagine-ui | 2026-03-30 | 2026-03-30 |
+| REQ-1774889676 | add grok imagine support | IN_PROGRESS | MEDIUM | feature/REQ-1774889676-add-grok-imagine-support | 2026-03-30 | 2026-03-30 |
 
 ## Status Breakdown
 - **Proposed**: 0
-- **In Progress**: 0
+- **In Progress**: 1
 - **Code Review**: 0
 - **Merged**: 25
 - **Deployed**: 2
@@ -50,6 +51,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-30T16:47:13Z
+* Last updated: 2026-03-30T16:57:58Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`
