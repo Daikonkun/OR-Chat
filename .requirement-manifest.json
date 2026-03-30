@@ -305,6 +305,15 @@
       "updatedAt": "2026-03-30T16:47:13Z",
       "notes": "Add /imagine command and inline image display in chat UI, calling /api/imagine endpoint",
       "worktreeId": "feature/REQ-1774888513-frontend-grok-imagine-ui"
+    },
+    {
+      "id": "REQ-1774889676",
+      "name": "add grok imagine support",
+      "description": "I want to make the chat support image output by using Grok Imagine image pro model (https://console.x.ai/team/0707afa0-cc45-4260-899b-419950d79ec7/models/grok-imagine-image-pro?cluster=us-east-1), note to update both local version and vercel version",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T16:54:36Z",
+      "updatedAt": "2026-03-30T16:54:36Z"
     }
   ]
 }
