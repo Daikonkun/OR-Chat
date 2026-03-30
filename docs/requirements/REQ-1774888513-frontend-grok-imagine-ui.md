@@ -11,17 +11,28 @@ Add UI elements to the chat frontend for triggering image generation via the /ap
 
 ## Success Criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [ ] A dedicated image generation trigger (button or `/imagine` command) is available in the chat UI
+- [ ] Users can enter a text prompt and optionally select aspect ratio and resolution before generating
+- [ ] Generated images are displayed inline in the chat messages area
+- [ ] Loading state is shown while the image is being generated
+- [ ] Error messages from the API are displayed clearly to the user
 
 ## Technical Notes
 
-(Add implementation notes here)
+**Approach**: Add an image generation mode to the existing chat UI. Could be a `/imagine <prompt>` slash command detected in `static/app.js` before send, or a separate button next to the send button. The `/api/imagine` endpoint already handles validation and proxying.
+
+**Affected files**:
+- `static/app.js`: Add imagine command detection, API call to `/api/imagine`, and inline image rendering
+- `static/index.html`: Add UI elements (optional aspect ratio/resolution selectors, imagine button)
+- `static/style.css`: Style the generated image display and any new controls
+
+**Risks**:
+- Image generation can take several seconds — needs clear loading feedback
+- xAI image URLs are temporary — may need to handle expiration gracefully
 
 ## Dependencies
 
-(List other requirement IDs if applicable, e.g., REQ-XXX, REQ-YYY)
+- REQ-1774887470 (Vercel direct xAI API and Grok Imagine support) — provides the `/api/imagine` backend endpoint
 
 ## Worktree
 

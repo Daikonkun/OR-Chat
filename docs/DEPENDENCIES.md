@@ -60,3 +60,5 @@ REQ-1774858263: Review follow-up: add xAI API key format validation (no dependen
 
 REQ-1774887470: Vercel direct xAI API and Grok Imagine support (no dependencies)
 
+REQ-1774888513: Frontend Grok Imagine UI (no dependencies)
+
