@@ -14,6 +14,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774855194: Review follow-up: proper base64 validation for image rendering
 * [MERGED] REQ-1774858151: Review follow-up: verify and configure xAI API endpoint
 * [MERGED] REQ-1774858263: Review follow-up: add xAI API key format validation
+* [PROPOSED] REQ-1774887470: Vercel direct xAI API and Grok Imagine support
 
 ## Medium Priority
 * [DEPLOYED] REQ-1774628144: Review follow-up: align slash commands with actual skill invocations

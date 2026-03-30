@@ -58,3 +58,5 @@ REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (no depe
 
 REQ-1774858263: Review follow-up: add xAI API key format validation (no dependencies)
 
+REQ-1774887470: Vercel direct xAI API and Grok Imagine support (no dependencies)
+

@@ -291,7 +291,8 @@
       "status": "PROPOSED",
       "priority": "HIGH",
       "createdAt": "2026-03-30T16:17:50Z",
-      "updatedAt": "2026-03-30T16:17:50Z"
+      "updatedAt": "2026-03-30T16:17:50Z",
+      "notes": "Port server.py direct xAI routing to Vercel serverless (api/models.js, api/chat.js) + new api/imagine.js for Grok Imagine"
     }
   ]
 }
