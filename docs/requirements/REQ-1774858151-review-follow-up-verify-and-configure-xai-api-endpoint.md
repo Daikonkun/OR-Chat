@@ -1,7 +1,7 @@
 # Review follow-up: verify and configure xAI API endpoint
 
 **ID**: REQ-1774858151  
-**Status**: PROPOSED  
+**Status**: CODE_REVIEW  
 **Priority**: HIGH  
 **Created**: 2026-03-30T08:09:11Z  
 

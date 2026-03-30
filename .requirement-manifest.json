@@ -267,10 +267,10 @@
       "id": "REQ-1774858151",
       "name": "Review follow-up: verify and configure xAI API endpoint",
       "description": "Source: code-review of REQ-1774855463. Severity: HIGH. Evidence: server.py hardcodes XAI_BASE = 'https://api.x.ai/v1' which may be incorrect or could change. Required outcome: verify correct xAI API endpoint, make it configurable via environment variable, and add validation.",
-      "status": "PROPOSED",
+      "status": "CODE_REVIEW",
       "priority": "HIGH",
       "createdAt": "2026-03-30T08:09:11Z",
-      "updatedAt": "2026-03-30T08:09:11Z"
+      "updatedAt": "2026-03-30T08:53:38Z"
     },
     {
       "id": "REQ-1774858263",
