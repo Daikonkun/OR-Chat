@@ -309,12 +309,22 @@ function addImageFile(file) {
 function renderImagePreview(dataUrl, index) {
   const wrapper = document.createElement('div');
   wrapper.className = 'image-preview';
-  wrapper.innerHTML = `<img src="${dataUrl}"><button class="remove-btn" data-idx="${index}">&times;</button>`;
-  wrapper.querySelector('.remove-btn').addEventListener('click', (e) => {
+
+  const img = document.createElement('img');
+  img.src = dataUrl;
+  wrapper.appendChild(img);
+
+  const btn = document.createElement('button');
+  btn.className = 'remove-btn';
+  btn.dataset.idx = index;
+  btn.textContent = '\u00D7';
+  btn.addEventListener('click', (e) => {
     const idx = parseInt(e.target.dataset.idx, 10);
     pendingImages.splice(idx, 1);
     rebuildPreviews();
   });
+  wrapper.appendChild(btn);
+
   previewBar.appendChild(wrapper);
 }
 
