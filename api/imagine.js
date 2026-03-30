@@ -2,7 +2,7 @@
 
 import { validateXaiApiKey, getXaiBase, setCorsHeaders } from './utils.js';
 
-const ALLOWED_MODELS = ['grok-imagine-image'];
+const ALLOWED_MODELS = ['grok-imagine-image', 'grok-imagine-image-pro'];
 const ALLOWED_ASPECT_RATIOS = ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'];
 const ALLOWED_RESOLUTIONS = ['1k', '2k'];
 
@@ -33,6 +33,10 @@ export default async function handler(req, res) {
 
   if (!prompt || typeof prompt !== 'string') {
     return res.status(400).json({ error: 'prompt is required and must be a string' });
+  }
+
+  if (prompt.length > 4000) {
+    return res.status(400).json({ error: 'prompt must be 4000 characters or fewer' });
   }
 
   if (!ALLOWED_MODELS.includes(model)) {

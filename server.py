@@ -241,6 +241,78 @@ async def _stream_response(payload: dict, headers: dict, api_base: str, is_xai_d
                     yield f"{line}\n\n"
 
 
+ALLOWED_IMAGINE_MODELS = {"grok-imagine-image", "grok-imagine-image-pro"}
+ALLOWED_ASPECT_RATIOS = {
+    "1:1", "16:9", "9:16", "4:3", "3:4", "3:2", "2:3",
+    "2:1", "1:2", "19.5:9", "9:19.5", "20:9", "9:20", "auto",
+}
+ALLOWED_RESOLUTIONS = {"1k", "2k"}
+
+
+@app.post("/api/imagine")
+async def imagine(request: Request):
+    """Proxy image generation requests to the xAI Grok Imagine API."""
+    if not validate_xai_api_key(XAI_API_KEY):
+        raise HTTPException(
+            status_code=500,
+            detail="XAI_API_KEY not set or invalid. Image generation requires a valid xAI API key.",
+        )
+
+    body = await request.json()
+    prompt = body.get("prompt")
+    model = body.get("model", "grok-imagine-image-pro")
+    n = body.get("n", 1)
+    response_format = body.get("response_format", "url")
+    aspect_ratio = body.get("aspect_ratio")
+    resolution = body.get("resolution")
+
+    if not prompt or not isinstance(prompt, str):
+        raise HTTPException(status_code=400, detail="prompt is required and must be a string")
+
+    if len(prompt) > 4000:
+        raise HTTPException(status_code=400, detail="prompt must be 4000 characters or fewer")
+
+    if model not in ALLOWED_IMAGINE_MODELS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Model '{model}' not allowed. Allowed: {', '.join(sorted(ALLOWED_IMAGINE_MODELS))}",
+        )
+
+    if not isinstance(n, int) or n < 1 or n > 10:
+        raise HTTPException(status_code=400, detail="n must be an integer between 1 and 10")
+
+    if aspect_ratio and aspect_ratio not in ALLOWED_ASPECT_RATIOS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid aspect_ratio. Allowed: {', '.join(sorted(ALLOWED_ASPECT_RATIOS))}",
+        )
+
+    if resolution and resolution not in ALLOWED_RESOLUTIONS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid resolution. Allowed: {', '.join(sorted(ALLOWED_RESOLUTIONS))}",
+        )
+
+    payload = {"model": model, "prompt": prompt, "n": n, "response_format": response_format}
+    if aspect_ratio:
+        payload["aspect_ratio"] = aspect_ratio
+    if resolution:
+        payload["resolution"] = resolution
+
+    async with httpx.AsyncClient(timeout=120) as client:
+        resp = await client.post(
+            urljoin(XAI_BASE, "images/generations"),
+            json=payload,
+            headers={
+                "Authorization": f"Bearer {XAI_API_KEY}",
+                "Content-Type": "application/json",
+            },
+        )
+        if resp.status_code != 200:
+            raise HTTPException(status_code=resp.status_code, detail=resp.text)
+        return resp.json()
+
+
 # Serve static files (frontend)
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
