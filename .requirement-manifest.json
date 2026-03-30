@@ -233,6 +233,15 @@
       "createdAt": "2026-03-30T06:24:40Z",
       "updatedAt": "2026-03-30T06:32:27Z",
       "worktreeId": "feature/REQ-1774851880-allow-picture-output"
+    },
+    {
+      "id": "REQ-1774855175",
+      "name": "Review follow-up: secure image URL validation in picture output",
+      "description": "Source: code-review of REQ-1774851880. Severity: HIGH. Evidence: image URL regex in static/app.js is overly permissive (matches any URL ending with image extensions without proper validation). Could match non-image URLs or malicious content. Required outcome: implement proper URL validation with safety checks before rendering images.",
+      "status": "PROPOSED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-30T07:19:35Z",
+      "updatedAt": "2026-03-30T07:19:35Z"
     }
   ]
 }
