@@ -5,6 +5,9 @@
   "installCommand": "echo 'No dependencies needed for static deploy'",
   "framework": null,
   "routes": [
+    { "src": "/api/login", "dest": "/api/login" },
+    { "src": "/api/logout", "dest": "/api/logout" },
+    { "src": "/api/session", "dest": "/api/session" },
     { "src": "/api/models", "dest": "/api/models" },
     { "src": "/api/chat", "dest": "/api/chat" },
     { "src": "/api/imagine", "dest": "/api/imagine" }

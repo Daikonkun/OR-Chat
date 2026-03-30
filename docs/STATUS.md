@@ -2,8 +2,10 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (0)
+## PROPOSED (1)
 
+* REQ-1774891701: add login session (priority: MEDIUM)
+  - Worktree: none
 
 ## IN_PROGRESS (0)
 
@@ -89,7 +91,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 31
+- Total Requirements: 32
 - Deployed: 2 (6%)
 - In Progress: 0
 - Blocked: 0

@@ -1,7 +1,7 @@
 // Vercel Serverless Function: List available models
 // Filters to x-ai and deepseek authors
 
-import { validateXaiApiKey, setCorsHeaders } from './utils.js';
+import { validateXaiApiKey, setCorsHeaders, requireAuth } from './utils.js';
 
 const ALLOWED_AUTHORS = ['x-ai', 'deepseek'];
 
@@ -16,6 +16,8 @@ export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (!requireAuth(req, res)) return;
 
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
