@@ -248,10 +248,10 @@
       "id": "REQ-1774855194",
       "name": "Review follow-up: proper base64 validation for image rendering",
       "description": "Source: code-review of REQ-1774851880. Severity: HIGH. Evidence: base64 regex in static/app.js doesn't validate proper base64 structure (length divisible by 4, valid characters only). Invalid base64 could cause rendering errors or security issues. Required outcome: implement proper base64 validation with length and character checks.",
-      "status": "IN_PROGRESS",
+      "status": "CODE_REVIEW",
       "priority": "HIGH",
       "createdAt": "2026-03-30T07:19:54Z",
-      "updatedAt": "2026-03-30T15:33:32Z",
+      "updatedAt": "2026-03-30T15:37:57Z",
       "worktreeId": "feature/REQ-1774855194-review-follow-up-proper-base64-validation-for-image-rendering"
     },
     {
