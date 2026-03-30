@@ -31,7 +31,18 @@
           📎
           <input type="file" id="image-input" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden>
         </label>
-        <textarea id="message-input" rows="1" placeholder="Type a message…" autofocus></textarea>
+        <textarea id="message-input" rows="1" placeholder="Type a message or /imagine prompt…" autofocus></textarea>
+        <select id="aspect-ratio-select" title="Aspect ratio (for /imagine)">
+          <option value="">Ratio</option>
+          <option value="1:1">1:1</option>
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16</option>
+          <option value="4:3">4:3</option>
+          <option value="3:2">3:2</option>
+          <option value="2:1">2:1</option>
+          <option value="auto">Auto</option>
+        </select>
+        <button type="button" id="imagine-btn" title="Generate image (/imagine)">🎨</button>
         <button type="submit" id="send-btn">Send</button>
       </form>
       <div id="drop-overlay">Drop image here</div>

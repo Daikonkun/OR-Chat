@@ -17,6 +17,8 @@ const footerEl      = document.querySelector('footer');
 const chatContainer = document.getElementById('chat-container');
 const nsfwToggleBtn = document.getElementById('nsfw-toggle-btn');
 const apiBadge     = document.getElementById('api-badge');
+const imagineBtn   = document.getElementById('imagine-btn');
+const aspectSelect = document.getElementById('aspect-ratio-select');
 
 // Model metadata cache (keyed by model id)
 let modelMeta = {};
@@ -101,6 +103,16 @@ chatForm.addEventListener('submit', async (e) => {
 
   const text = messageInput.value.trim();
   if (!text && pendingImages.length === 0) return;
+
+  // Check for /imagine command
+  if (text.startsWith('/imagine ')) {
+    const prompt = text.slice(9).trim();
+    if (!prompt) { alert('Usage: /imagine <prompt>'); return; }
+    messageInput.value = '';
+    messageInput.style.height = 'auto';
+    await generateImage(prompt);
+    return;
+  }
 
   const model = modelSelect.value;
   if (!model) { alert('Select a model first'); return; }
@@ -398,6 +410,110 @@ messageInput.addEventListener('keydown', (e) => {
     chatForm.requestSubmit();
   }
 });
+
+// Show/hide imagine controls based on /imagine prefix
+messageInput.addEventListener('input', () => {
+  const show = messageInput.value.trimStart().startsWith('/imagine');
+  aspectSelect.classList.toggle('imagine-visible', show);
+  imagineBtn.classList.toggle('imagine-visible', show);
+});
+
+// ── Imagine button ────────────────────────────────────
+imagineBtn.addEventListener('click', async () => {
+  if (isStreaming) return;
+  const text = messageInput.value.trim();
+  if (!text) { alert('Type a prompt first, then click 🎨'); return; }
+  messageInput.value = '';
+  messageInput.style.height = 'auto';
+  await generateImage(text);
+});
+
+// ── Image generation ──────────────────────────────────
+async function generateImage(prompt) {
+  isStreaming = true;
+  sendBtn.disabled = true;
+  imagineBtn.disabled = true;
+
+  // Show user prompt and add to conversation history
+  const userMsg = { role: 'user', content: `/imagine ${prompt}` };
+  conversationMessages.push(userMsg);
+  renderUserMessage(`/imagine ${prompt}`, []);
+
+  // Create assistant message with loading state
+  const assistantEl = createMessageEl('assistant', '');
+  const contentEl = assistantEl.querySelector('.content');
+  contentEl.innerHTML = '<div class="imagine-loading"><span class="spinner"></span> Generating image…</div>';
+  scrollToBottom();
+
+  const aspect_ratio = aspectSelect.value || undefined;
+
+  try {
+    const resp = await fetch('/api/imagine', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, aspect_ratio }),
+    });
+
+    if (!resp.ok) {
+      const errData = await resp.json().catch(() => ({ error: resp.statusText }));
+      contentEl.innerHTML = `<span class="error-text">Image generation failed: ${escapeHtml(typeof errData.error === 'string' ? errData.error : JSON.stringify(errData.error))}</span>`;
+      return;
+    }
+
+    const data = await resp.json();
+    contentEl.innerHTML = '';
+
+    if (data.data && data.data.length > 0) {
+      for (const img of data.data) {
+        const url = img.url || img.b64_json;
+        if (!url) continue;
+
+        const imgEl = document.createElement('img');
+        imgEl.className = 'generated-image';
+
+        if (img.b64_json) {
+          imgEl.src = `data:${img.mime_type || 'image/jpeg'};base64,${img.b64_json}`;
+        } else if (isAllowedImageUrl(url)) {
+          imgEl.src = url;
+        } else {
+          const warning = document.createElement('span');
+          warning.className = 'blocked-image';
+          warning.textContent = `[Image blocked: invalid URL]`;
+          contentEl.appendChild(warning);
+          continue;
+        }
+
+        imgEl.alt = prompt;
+        contentEl.appendChild(imgEl);
+      }
+
+      if (data.data[0]?.revised_prompt) {
+        const revised = document.createElement('div');
+        revised.className = 'revised-prompt';
+        revised.textContent = data.data[0].revised_prompt;
+        contentEl.appendChild(revised);
+      }
+
+      // Add to conversation history so LLM has context
+      const imageUrls = data.data.map(d => d.url).filter(Boolean);
+      conversationMessages.push({
+        role: 'assistant',
+        content: `[Generated image for: ${prompt}]${imageUrls.length ? '\n' + imageUrls.join('\n') : ''}`,
+      });
+    } else {
+      contentEl.innerHTML = '<span class="error-text">No images returned</span>';
+    }
+
+    scrollToBottom();
+  } catch (err) {
+    contentEl.innerHTML = `<span class="error-text">Network error: ${escapeHtml(err.message)}</span>`;
+  } finally {
+    isStreaming = false;
+    sendBtn.disabled = false;
+    imagineBtn.disabled = false;
+    messageInput.focus();
+  }
+}
 
 // ── New chat ──────────────────────────────────────────
 newChatBtn.addEventListener('click', () => {

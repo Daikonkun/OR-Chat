@@ -300,3 +300,71 @@ footer.drag-over #drop-overlay {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Imagine controls */
+#aspect-ratio-select {
+  background: var(--surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  width: 62px;
+  display: none;
+}
+#aspect-ratio-select.imagine-visible { display: inline-block; }
+
+#imagine-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: none;
+}
+#imagine-btn.imagine-visible { display: inline-block; }
+#imagine-btn:hover { background: var(--accent); }
+#imagine-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Generated image */
+.message img.generated-image {
+  max-width: 512px;
+  max-height: 512px;
+  border-radius: 8px;
+  margin: 8px 0;
+  display: block;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.revised-prompt {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Loading spinner */
+.imagine-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
