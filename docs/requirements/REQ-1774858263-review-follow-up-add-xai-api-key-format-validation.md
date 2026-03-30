@@ -1,7 +1,7 @@
 # Review follow-up: add xAI API key format validation
 
 **ID**: REQ-1774858263  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: HIGH  
 **Created**: 2026-03-30T08:11:03Z  
 
