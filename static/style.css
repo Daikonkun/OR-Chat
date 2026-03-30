@@ -62,6 +62,26 @@ header h1 {
   flex: 1;
 }
 
+.api-badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.api-badge-direct {
+  background: rgba(0, 200, 120, 0.15);
+  color: #00c878;
+  border: 1px solid #00c878;
+}
+
+.api-badge-openrouter {
+  background: rgba(100, 140, 255, 0.15);
+  color: #648cff;
+  border: 1px solid #648cff;
+}
+
 #new-chat-btn {
   background: var(--accent);
   color: #fff;

@@ -16,6 +16,10 @@ const newChatBtn    = document.getElementById('new-chat-btn');
 const footerEl      = document.querySelector('footer');
 const chatContainer = document.getElementById('chat-container');
 const nsfwToggleBtn = document.getElementById('nsfw-toggle-btn');
+const apiBadge     = document.getElementById('api-badge');
+
+// Model metadata cache (keyed by model id)
+let modelMeta = {};
 
 // Apply persisted NSFW toggle state
 if (nsfwMode) {
@@ -39,6 +43,7 @@ async function loadModels() {
     const data = await resp.json();
 
     modelSelect.innerHTML = '';
+    modelMeta = {};
     let currentGroup = null;
     let optgroup = null;
 
@@ -53,16 +58,39 @@ async function loadModels() {
       opt.value = m.id;
       const ctx = m.context_length ? ` (${(m.context_length / 1000).toFixed(0)}k)` : '';
       const vision = m.supports_vision ? ' 👁' : '';
-      opt.textContent = `${m.name}${ctx}${vision}`;
+      const direct = m.uses_direct_api ? ' ⚡' : '';
+      opt.textContent = `${m.name}${ctx}${vision}${direct}`;
+      modelMeta[m.id] = m;
       optgroup.appendChild(opt);
     }
 
     if (data.models.length === 0) {
       modelSelect.innerHTML = '<option value="">No models available</option>';
     }
+
+    updateApiBadge();
   } catch (err) {
     modelSelect.innerHTML = `<option value="">Error loading models</option>`;
     console.error('Failed to load models:', err);
+  }
+}
+
+// ── API source badge ──────────────────────────────────
+modelSelect.addEventListener('change', updateApiBadge);
+
+function updateApiBadge() {
+  const meta = modelMeta[modelSelect.value];
+  if (!meta) {
+    apiBadge.hidden = true;
+    return;
+  }
+  apiBadge.hidden = false;
+  if (meta.uses_direct_api) {
+    apiBadge.textContent = '⚡ xAI Direct';
+    apiBadge.className = 'api-badge api-badge-direct';
+  } else {
+    apiBadge.textContent = '🔀 OpenRouter';
+    apiBadge.className = 'api-badge api-badge-openrouter';
   }
 }
 
