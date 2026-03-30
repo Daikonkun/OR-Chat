@@ -5,19 +5,19 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (3)
+## IN_PROGRESS (2)
 
 * REQ-1774851880: allow picture output (priority: MEDIUM)
   - Worktree: feature/REQ-1774851880-allow-picture-output
 * REQ-1774855463: x-ai-direct api (priority: MEDIUM)
   - Worktree: feature/REQ-1774855463-x-ai-direct-api
-* REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
-  - Worktree: feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (2)
 
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
+* REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
+  - Worktree: feature/REQ-1774858263-review-follow-up-add-xai-api-key-format-validation
 
 ## MERGED (19)
 
@@ -85,5 +85,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 28
 - Deployed: 2 (7%)
-- In Progress: 3
+- In Progress: 2
 - Blocked: 0
