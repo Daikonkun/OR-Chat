@@ -2,13 +2,13 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (1)
+## PROPOSED (0)
+
+
+## IN_PROGRESS (1)
 
 * REQ-1774888513: Frontend Grok Imagine UI (priority: MEDIUM)
-  - Worktree: none
-
-## IN_PROGRESS (0)
-
+  - Worktree: feature/REQ-1774888513-frontend-grok-imagine-ui
 
 ## CODE_REVIEW (0)
 
@@ -89,5 +89,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 30
 - Deployed: 2 (6%)
-- In Progress: 0
+- In Progress: 1
 - Blocked: 0

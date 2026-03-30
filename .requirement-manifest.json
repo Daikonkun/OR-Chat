@@ -299,11 +299,12 @@
       "id": "REQ-1774888513",
       "name": "Frontend Grok Imagine UI",
       "description": "Add UI elements to the chat frontend for triggering image generation via the /api/imagine endpoint. Source: code-review of REQ-1774887470. The imagine API backend exists but is unreachable from the UI. Required outcome: users can generate images from the chat interface using Grok Imagine, with prompt input, aspect ratio/resolution options, and inline image display.",
-      "status": "PROPOSED",
+      "status": "IN_PROGRESS",
       "priority": "MEDIUM",
       "createdAt": "2026-03-30T16:35:13Z",
-      "updatedAt": "2026-03-30T16:35:13Z",
-      "notes": "Add /imagine command and inline image display in chat UI, calling /api/imagine endpoint"
+      "updatedAt": "2026-03-30T16:36:58Z",
+      "notes": "Add /imagine command and inline image display in chat UI, calling /api/imagine endpoint",
+      "worktreeId": "feature/REQ-1774888513-frontend-grok-imagine-ui"
     }
   ]
 }
