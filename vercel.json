@@ -6,6 +6,7 @@
   "framework": null,
   "routes": [
     { "src": "/api/models", "dest": "/api/models" },
-    { "src": "/api/chat", "dest": "/api/chat" }
+    { "src": "/api/chat", "dest": "/api/chat" },
+    { "src": "/api/imagine", "dest": "/api/imagine" }
   ]
 }

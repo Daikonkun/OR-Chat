@@ -1,14 +1,13 @@
 // Vercel Serverless Function: List available models
 // Filters to x-ai and deepseek authors
 
+import { validateXaiApiKey, setCorsHeaders } from './utils.js';
+
 const ALLOWED_AUTHORS = ['x-ai', 'deepseek'];
 
 export default async function handler(req, res) {
   // CORS headers — origin configurable via ALLOWED_ORIGIN env var
-  const allowedOrigin = process.env.ALLOWED_ORIGIN || '*';
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  setCorsHeaders(res, 'GET, OPTIONS');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -38,6 +37,9 @@ export default async function handler(req, res) {
     const data = await resp.json();
     const models = [];
 
+    const xaiKey = process.env.XAI_API_KEY;
+    const useDirectXai = validateXaiApiKey(xaiKey);
+
     for (const m of data.data || []) {
       const modelId = m.id || '';
       const author = modelId.split('/')[0];
@@ -49,6 +51,7 @@ export default async function handler(req, res) {
         author,
         context_length: m.context_length,
         supports_vision: m.architecture?.modalities?.includes('image') || false,
+        uses_direct_api: author === 'x-ai' && useDirectXai,
         prompt_price: m.pricing?.prompt,
         completion_price: m.pricing?.completion,
       });

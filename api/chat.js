@@ -1,14 +1,13 @@
-// Vercel Serverless Function: Proxy chat completions to OpenRouter
+// Vercel Serverless Function: Proxy chat completions to OpenRouter or direct xAI API
+
+import { validateXaiApiKey, getXaiBase, setCorsHeaders } from './utils.js';
 
 const ALLOWED_AUTHORS = ['x-ai', 'deepseek'];
 const OPENROUTER_BASE = 'https://openrouter.ai/api/v1';
 
 export default async function handler(req, res) {
   // CORS headers — origin configurable via ALLOWED_ORIGIN env var
-  const allowedOrigin = process.env.ALLOWED_ORIGIN || '*';
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  setCorsHeaders(res, 'POST, OPTIONS');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -18,10 +17,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'OPENROUTER_API_KEY not set' });
-  }
+  const openrouterKey = process.env.OPENROUTER_API_KEY;
+  const xaiKey = process.env.XAI_API_KEY;
 
   let body;
   try {
@@ -57,12 +54,32 @@ export default async function handler(req, res) {
     if (body[key] !== undefined) payload[key] = body[key];
   }
 
-  const headers = {
-    'Authorization': `Bearer ${apiKey}`,
-    'Content-Type': 'application/json',
-    'HTTP-Referer': process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:8888',
-    'X-Title': 'OpenRouter Local Wrapper',
-  };
+  // Determine API target: direct xAI or OpenRouter
+  const useDirectXai = author === 'x-ai' && validateXaiApiKey(xaiKey);
+
+  let apiUrl, headers;
+
+  if (useDirectXai) {
+    const xaiBase = getXaiBase();
+    apiUrl = `${xaiBase}chat/completions`;
+    // Strip 'x-ai/' prefix for direct xAI API
+    payload.model = model.includes('/') ? model.split('/').slice(1).join('/') : model;
+    headers = {
+      'Authorization': `Bearer ${xaiKey}`,
+      'Content-Type': 'application/json',
+    };
+  } else {
+    if (!openrouterKey) {
+      return res.status(500).json({ error: 'OPENROUTER_API_KEY not set' });
+    }
+    apiUrl = `${OPENROUTER_BASE}/chat/completions`;
+    headers = {
+      'Authorization': `Bearer ${openrouterKey}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:8888',
+      'X-Title': 'OpenRouter Local Wrapper',
+    };
+  }
 
   if (stream) {
     // Streaming: proxy SSE from OpenRouter to client
@@ -71,7 +88,7 @@ export default async function handler(req, res) {
     res.setHeader('Connection', 'keep-alive');
 
     try {
-      const openRouterResp = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
+      const openRouterResp = await fetch(apiUrl, {
         method: 'POST',
         headers,
         body: JSON.stringify(payload),
@@ -95,7 +112,7 @@ export default async function handler(req, res) {
     }
   } else {
     // Non-streaming
-    const openRouterResp = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
+    const openRouterResp = await fetch(apiUrl, {
       method: 'POST',
       headers,
       body: JSON.stringify(payload),
