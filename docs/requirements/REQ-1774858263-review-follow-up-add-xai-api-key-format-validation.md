@@ -1,7 +1,7 @@
 # Review follow-up: add xAI API key format validation
 
 **ID**: REQ-1774858263  
-**Status**: PROPOSED  
+**Status**: CODE_REVIEW  
 **Priority**: HIGH  
 **Created**: 2026-03-30T08:11:03Z  
 
@@ -11,13 +11,59 @@ Source: code-review of REQ-1774855463. Severity: HIGH. Evidence: XAI_API_KEY use
 
 ## Success Criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [x] XAI_API_KEY format validation function implemented in `server.py`
+- [x] Validation catches obviously invalid keys (wrong format, missing prefix, etc.)
+- [x] Clear error messages provided for invalid keys
+- [x] Backward compatibility maintained for existing valid keys
+- [x] Documentation updated with key format expectations
 
 ## Technical Notes
 
-(Add implementation notes here)
+**Current issue**: XAI_API_KEY is used without validation in `server.py`. Invalid keys only fail when making actual API calls to xAI/OpenRouter, providing poor user experience.
+
+**Proposed solution**: Add format validation for XAI_API_KEY similar to how XAI_BASE URL is validated. xAI keys typically follow specific patterns (e.g., starting with 'xai-', specific length, character set).
+
+**Implementation approach**:
+1. Research actual xAI API key format from xAI documentation
+2. Create validation function that checks key format
+3. Integrate validation at key usage points
+4. Provide clear error messages for invalid keys
+5. Maintain backward compatibility
+
+**Files to modify**:
+- `server.py`: Add validation function and integrate at XAI_API_KEY usage points
+- `.env.example`: Add format hint in comments
+- Documentation updates as needed
+
+
+## Development Plan
+
+✅ **1. Research xAI API key format**: Investigate actual xAI API key patterns (check documentation, examples) to determine proper validation rules
+   - **Files**: Research external xAI documentation
+   - **Expected outcome**: Document key format pattern (e.g., starts with 'xai-', length requirements, character set)
+   - **Status**: Completed - Based on `.env.example` and common patterns, xAI keys start with 'xai-' and contain alphanumeric/hyphen characters
+
+✅ **2. Add validation function in server.py**: Create a validation function for XAI_API_KEY that checks format before use
+   - **Files**: `server.py`
+   - **Expected outcome**: Add `validate_xai_api_key(key)` function that returns boolean or raises informative error
+   - **Status**: Completed - Function added with proper validation logic
+
+✅ **3. Integrate validation into existing code**: Update XAI_API_KEY usage points to validate before API calls
+   - **Files**: `server.py` (lines 20, 79, 115, 120)
+   - **Expected outcome**: Early validation with clear error messages instead of failing on API call
+   - **Status**: Completed - Updated all usage points to check validation, added warning logs
+
+✅ **4. Update documentation**: Add validation details to relevant documentation
+   - **Files**: `.env.example`, any API documentation
+   - **Expected outcome**: Clear guidance on expected xAI API key format
+   - **Status**: Completed - Updated `.env.example` with format guidance
+
+✅ **5. Test validation**: Create test cases for valid and invalid key formats
+   - **Files**: Test in development environment
+   - **Expected outcome**: Confirm validation catches obvious errors and allows valid keys
+   - **Status**: Completed - Created test cases, validation logic tested and working
+
+**Last updated**: 2026-03-30T09:39:58Z
 
 ## Dependencies
 
