@@ -10,6 +10,8 @@
   ],
   "env": {
     "OPENROUTER_API_KEY": "",
-    "ALLOWED_ORIGIN": ""
+    "ALLOWED_ORIGIN": "",
+    "XAI_API_KEY": "",
+    "XAI_BASE": ""
   }
 }
