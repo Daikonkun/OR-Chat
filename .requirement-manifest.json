@@ -222,6 +222,15 @@
       "priority": "MEDIUM",
       "createdAt": "2026-03-29T16:00:56Z",
       "updatedAt": "2026-03-29T16:27:56Z"
+    },
+    {
+      "id": "REQ-1774851880",
+      "name": "allow picture output",
+      "description": "when I asked for image generation in the chat, the LLM returns that it is a text-only model. modify to make multimodal models able to output image contents",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T06:24:40Z",
+      "updatedAt": "2026-03-30T06:24:40Z"
     }
   ]
 }
