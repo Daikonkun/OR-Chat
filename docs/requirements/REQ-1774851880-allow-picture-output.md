@@ -1,7 +1,7 @@
 # allow picture output
 
 **ID**: REQ-1774851880  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T06:24:40Z  
 
@@ -11,11 +11,11 @@ when I asked for image generation in the chat, the LLM returns that it is a text
 
 ## Success Criteria
 
-- [ ] When a user requests image generation from a multimodal model (like GPT-4V, Claude 3, etc.), the system should properly handle and display image outputs instead of returning "text-only model" errors.
-- [ ] The chat interface should support rendering image content returned by the LLM, displaying images inline with the conversation.
-- [ ] The backend API should correctly parse and forward image data from OpenRouter's multimodal model responses to the frontend.
-- [ ] Image outputs should be properly formatted and sized for the chat UI, maintaining aspect ratio and quality.
-- [ ] The system should handle both base64-encoded image data and image URLs returned by different multimodal models.
+- [x] When a user requests image generation from a multimodal model (like GPT-4V, Claude 3, etc.), the system should properly handle and display image outputs instead of returning "text-only model" errors.
+- [x] The chat interface should support rendering image content returned by the LLM, displaying images inline with the conversation.
+- [x] The backend API should correctly parse and forward image data from OpenRouter's multimodal model responses to the frontend.
+- [x] Image outputs should be properly formatted and sized for the chat UI, maintaining aspect ratio and quality.
+- [x] The system should handle both base64-encoded image data and image URLs returned by different multimodal models.
 
 ## Technical Notes
 

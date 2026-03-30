@@ -228,10 +228,10 @@
       "name": "allow picture output",
       "description": "when I asked for image generation in the chat, the LLM returns that it is a text-only model. modify to make multimodal models able to output image contents",
       "notes": "Add image rendering support to chat UI and backend for multimodal model outputs (server.py, app.js).",
-      "status": "IN_PROGRESS",
+      "status": "CODE_REVIEW",
       "priority": "MEDIUM",
       "createdAt": "2026-03-30T06:24:40Z",
-      "updatedAt": "2026-03-30T06:32:27Z",
+      "updatedAt": "2026-03-30T15:47:47Z",
       "worktreeId": "feature/REQ-1774851880-allow-picture-output"
     },
     {

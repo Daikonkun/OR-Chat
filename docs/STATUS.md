@@ -5,15 +5,15 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (2)
+## IN_PROGRESS (1)
 
-* REQ-1774851880: allow picture output (priority: MEDIUM)
-  - Worktree: feature/REQ-1774851880-allow-picture-output
 * REQ-1774855463: x-ai-direct api (priority: MEDIUM)
   - Worktree: feature/REQ-1774855463-x-ai-direct-api
 
-## CODE_REVIEW (0)
+## CODE_REVIEW (1)
 
+* REQ-1774851880: allow picture output (priority: MEDIUM)
+  - Worktree: feature/REQ-1774851880-allow-picture-output
 
 ## MERGED (21)
 
@@ -85,5 +85,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 28
 - Deployed: 2 (7%)
-- In Progress: 2
+- In Progress: 1
 - Blocked: 0
