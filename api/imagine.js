@@ -35,6 +35,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'prompt is required and must be a string' });
   }
 
+  if (prompt.length > 4000) {
+    return res.status(400).json({ error: 'prompt must be 4000 characters or fewer' });
+  }
+
   if (!ALLOWED_MODELS.includes(model)) {
     return res.status(400).json({ error: `Model '${model}' not allowed. Allowed: ${ALLOWED_MODELS.join(', ')}` });
   }

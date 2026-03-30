@@ -269,6 +269,9 @@ async def imagine(request: Request):
     if not prompt or not isinstance(prompt, str):
         raise HTTPException(status_code=400, detail="prompt is required and must be a string")
 
+    if len(prompt) > 4000:
+        raise HTTPException(status_code=400, detail="prompt must be 4000 characters or fewer")
+
     if model not in ALLOWED_IMAGINE_MODELS:
         raise HTTPException(
             status_code=400,
