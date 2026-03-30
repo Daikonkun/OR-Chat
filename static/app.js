@@ -170,6 +170,10 @@ async function streamAssistantResponse(model) {
     }
 
     conversationMessages.push({ role: 'assistant', content: assistantText });
+
+    // Final render: parse markdown images with URL validation
+    renderAssistantContent(contentSpan, assistantText);
+    scrollToBottom();
   } catch (err) {
     contentSpan.innerHTML = `<span class="error-text">Network error: ${escapeHtml(err.message)}</span>`;
   } finally {
@@ -179,7 +183,69 @@ async function streamAssistantResponse(model) {
   }
 }
 
+// ── Image URL validation ──────────────────────────────
+function isAllowedImageUrl(url) {
+  if (typeof url !== 'string' || url.length === 0) return false;
+
+  // Allow data:image/* URLs (used by user-upload FileReader path)
+  if (/^data:image\/(png|jpeg|gif|webp);base64,/i.test(url)) return true;
+
+  // Reject all other data: URLs (e.g. data:text/html, data:image/svg+xml)
+  if (/^data:/i.test(url)) return false;
+
+  try {
+    const parsed = new URL(url);
+    // Only allow https: scheme — reject http:, javascript:, blob:, etc.
+    if (parsed.protocol !== 'https:') return false;
+    return true;
+  } catch {
+    // Malformed URL
+    return false;
+  }
+}
+
 // ── Render helpers ────────────────────────────────────
+function renderAssistantContent(contentEl, text) {
+  // Clear previous content
+  contentEl.textContent = '';
+
+  // Match markdown image syntax: ![alt](url)
+  const imagePattern = /!\[([^\]]*)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = imagePattern.exec(text)) !== null) {
+    // Append text before this match
+    if (match.index > lastIndex) {
+      contentEl.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+    }
+
+    const alt = match[1];
+    const url = match[2];
+
+    if (isAllowedImageUrl(url)) {
+      const img = document.createElement('img');
+      img.src = url;
+      img.alt = alt; // alt is set via DOM property, safe from injection
+      img.className = 'assistant-image';
+      contentEl.appendChild(img);
+    } else {
+      // Rejected URL — render as escaped plain text with warning
+      const warning = document.createElement('span');
+      warning.className = 'blocked-image';
+      warning.textContent = `[Image blocked: ${url}]`;
+      contentEl.appendChild(warning);
+    }
+
+    lastIndex = imagePattern.lastIndex;
+  }
+
+  // Append remaining text after last match
+  if (lastIndex < text.length) {
+    contentEl.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
+}
+
 function renderUserMessage(text, imageDataUrls) {
   const el = createMessageEl('user', text);
   const contentEl = el.querySelector('.content');

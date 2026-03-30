@@ -141,6 +141,25 @@ main {
   display: block;
 }
 
+.message img.assistant-image {
+  max-width: 480px;
+  max-height: 400px;
+  border-radius: 6px;
+  margin: 8px 0;
+  display: block;
+}
+
+.message .blocked-image {
+  display: inline-block;
+  background: rgba(233, 69, 96, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  margin: 4px 0;
+}
+
 .message .error-text {
   color: var(--accent);
 }
