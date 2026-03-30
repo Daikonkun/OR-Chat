@@ -1,7 +1,7 @@
 # x-ai-direct api
 
 **ID**: REQ-1774855463  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T07:24:23Z  
 
@@ -11,11 +11,11 @@ add support for direct API key import from xAI, note to differentiate on the UI 
 
 ## Success Criteria
 
-- [ ] Users can input and save a direct xAI API key separately from the OpenRouter API key in the configuration.
-- [ ] The UI clearly indicates whether the system is using direct xAI API or OpenRouter API (via visual indicators, labels, or toggles).
-- [ ] When direct xAI API is configured, chat requests to xAI models use the direct API endpoint instead of routing through OpenRouter.
-- [ ] The system gracefully handles API key validation and provides clear error messages for invalid or expired xAI API keys.
-- [ ] Configuration persists between sessions and users can switch between direct xAI API and OpenRouter API modes.
+- [x] Users can input and save a direct xAI API key separately from the OpenRouter API key in the configuration.
+- [x] The UI clearly indicates whether the system is using direct xAI API or OpenRouter API (via visual indicators, labels, or toggles).
+- [x] When direct xAI API is configured, chat requests to xAI models use the direct API endpoint instead of routing through OpenRouter.
+- [x] The system gracefully handles API key validation and provides clear error messages for invalid or expired xAI API keys.
+- [x] Configuration persists between sessions and users can switch between direct xAI API and OpenRouter API modes.
 
 ## Technical Notes
 
