@@ -33,16 +33,15 @@ Add UI elements to the chat frontend for triggering image generation via the /ap
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774888513-frontend-grok-imagine-ui.md`.
-   - **Summary**: Add UI elements to the chat frontend for triggering image generation via the /ap
-   - **Key criteria**: - [ ] A dedicated image generation trigger (button or `/imagine` command) is available in the chat U
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: **Approach**: Add an image generation mode to the existing chat UI. Could be a `/imagine <prompt>` s
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774888513` and verify success criteria are met.
+1. **Add `/imagine` command detection in `static/app.js`** — Intercept messages starting with `/imagine ` in the submit handler. Extract the prompt text and route to the imagine flow instead of chat.
 
-**Last updated**: 2026-03-30T16:36:59Z
+2. **Add imagine API call and response rendering in `static/app.js`** — Create `generateImage(prompt)` function that POSTs to `/api/imagine`, shows a loading spinner in the chat, then renders the returned image URL inline as an `<img>` element.
+
+3. **Add imagine UI controls in `static/index.html`** — Add an optional aspect ratio selector and a generate image button (🎨) next to the send button.
+
+4. **Add imagine styles in `static/style.css`** — Style the generated image display, loading spinner, and imagine controls.
+
+**Last updated**: 2026-03-30T16:38:00Z
 
 ## Dependencies
 
