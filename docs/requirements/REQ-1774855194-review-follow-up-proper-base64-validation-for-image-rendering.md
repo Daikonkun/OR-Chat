@@ -1,7 +1,7 @@
 # Review follow-up: proper base64 validation for image rendering
 
 **ID**: REQ-1774855194  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: HIGH  
 **Created**: 2026-03-30T07:19:54Z  
 
