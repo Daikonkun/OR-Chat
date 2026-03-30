@@ -183,12 +183,20 @@ async function streamAssistantResponse(model) {
   }
 }
 
+// ── Base64 validation ─────────────────────────────────
+function isValidBase64(str) {
+  if (typeof str !== 'string' || str.length === 0) return false;
+  if (str.length % 4 !== 0) return false;
+  return /^[A-Za-z0-9+/=]+$/.test(str);
+}
+
 // ── Image URL validation ──────────────────────────────
 function isAllowedImageUrl(url) {
   if (typeof url !== 'string' || url.length === 0) return false;
 
-  // Allow data:image/* URLs (used by user-upload FileReader path)
-  if (/^data:image\/(png|jpeg|gif|webp);base64,/i.test(url)) return true;
+  // Allow data:image/* URLs only if base64 payload is valid
+  const dataMatch = url.match(/^data:image\/(png|jpeg|gif|webp);base64,(.+)$/i);
+  if (dataMatch) return isValidBase64(dataMatch[2]);
 
   // Reject all other data: URLs (e.g. data:text/html, data:image/svg+xml)
   if (/^data:/i.test(url)) return false;
@@ -300,6 +308,10 @@ function addImageFile(file) {
   reader.onload = () => {
     const dataUrl = reader.result;
     const base64 = dataUrl.split(',')[1];
+    if (!isValidBase64(base64)) {
+      alert('Image file produced invalid base64 data. Please try another file.');
+      return;
+    }
     pendingImages.push({ dataUrl, base64, mimeType: file.type });
     renderImagePreview(dataUrl, pendingImages.length - 1);
   };
