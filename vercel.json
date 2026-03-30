@@ -7,11 +7,5 @@
   "routes": [
     { "src": "/api/models", "dest": "/api/models" },
     { "src": "/api/chat", "dest": "/api/chat" }
-  ],
-  "env": {
-    "OPENROUTER_API_KEY": "",
-    "ALLOWED_ORIGIN": "",
-    "XAI_API_KEY": "",
-    "XAI_BASE": ""
-  }
+  ]
 }
