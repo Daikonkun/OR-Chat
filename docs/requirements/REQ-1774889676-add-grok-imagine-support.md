@@ -1,7 +1,7 @@
 # add grok imagine support
 
 **ID**: REQ-1774889676  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T16:54:36Z  
 
@@ -36,14 +36,11 @@ I want to make the chat support image output by using Grok Imagine image pro mod
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774889676-add-grok-imagine-support.md`.
-   - **Summary**: I want to make the chat support image output by using Grok Imagine image pro mod
-   - **Key criteria**: - [ ] The local FastAPI server (`server.py`) exposes a `POST /api/imagine` endpoint that proxies ima
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: **Approach**: Add a new `/api/imagine` endpoint in `server.py` mirroring the logic already in `api/i
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774889676` and verify success criteria are met.
+1. **Add `POST /api/imagine` endpoint to `server.py`** — Mirror `api/imagine.js` logic: validate `XAI_API_KEY` via `validate_xai_api_key()`, accept `prompt`, `model` (default `grok-imagine-image-pro`), `n`, `response_format`, `aspect_ratio`, `resolution`; proxy to `{XAI_BASE}images/generations` via `httpx.AsyncClient` with 120s timeout; return JSON response.
+2. **Update `api/imagine.js` allowed models** — Add `'grok-imagine-image-pro'` to the `ALLOWED_MODELS` array so the Vercel deployment accepts the pro model.
+3. **Update frontend `static/app.js`** — In the `generateImage()` function, set `model: 'grok-imagine-image-pro'` in the request payload (or add a model selector). Verify `/imagine` command and Imagine button send to `/api/imagine` correctly.
+4. **Test both backends** — Run `server.py` locally (`uvicorn`) and test `/api/imagine` with a sample prompt. Verify Vercel `api/imagine.js` accepts the pro model. Confirm error handling for missing key / invalid prompt.
+5. **Regenerate docs and validate** — Run `./scripts/regenerate-docs.sh` and `./scripts/show-requirement.sh REQ-1774889676` to confirm status and docs are in sync.
 
 **Last updated**: 2026-03-30T16:57:58Z
 
@@ -55,11 +52,11 @@ I want to make the chat support image output by using Grok Imagine image pro mod
 
 ## Worktree
 
-(Will be populated when work starts: feature/REQ-ID-slug)
+feature/REQ-1774889676-add-grok-imagine-support
 
 ---
 
-* **Linked Worktree**: None yet
-* **Branch**: None yet
+* **Linked Worktree**: feature/REQ-1774889676-add-grok-imagine-support
+* **Branch**: feature/REQ-1774889676-add-grok-imagine-support
 * **Merged**: No
 * **Deployed**: No

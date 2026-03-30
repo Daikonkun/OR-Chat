@@ -310,10 +310,10 @@
       "id": "REQ-1774889676",
       "name": "add grok imagine support",
       "description": "I want to make the chat support image output by using Grok Imagine image pro model (https://console.x.ai/team/0707afa0-cc45-4260-899b-419950d79ec7/models/grok-imagine-image-pro?cluster=us-east-1), note to update both local version and vercel version",
-      "status": "IN_PROGRESS",
+      "status": "CODE_REVIEW",
       "priority": "MEDIUM",
       "createdAt": "2026-03-30T16:54:36Z",
-      "updatedAt": "2026-03-30T16:57:58Z",
+      "updatedAt": "2026-03-30T17:07:41Z",
       "notes": "Add /api/imagine endpoint to server.py and allow grok-imagine-image-pro model in api/imagine.js for image generation on both local and Vercel deployments",
       "worktreeId": "feature/REQ-1774889676-add-grok-imagine-support"
     }

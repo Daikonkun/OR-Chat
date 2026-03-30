@@ -35,7 +35,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774851880: allow picture output
 * [MERGED] REQ-1774855463: x-ai-direct api
 * [MERGED] REQ-1774888513: Frontend Grok Imagine UI
-* [IN_PROGRESS] REQ-1774889676: add grok imagine support
+* [CODE_REVIEW] REQ-1774889676: add grok imagine support
 
 ## Low Priority
 * [MERGED] REQ-1774632175: Review follow-up: polish upgrade guide in README
