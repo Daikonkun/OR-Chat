@@ -259,10 +259,10 @@
       "name": "x-ai-direct api",
       "description": "add support for direct API key import from xAI, note to differentiate on the UI to distinguish direct API vs OpenRouter API",
       "notes": "Add XAI_API_KEY config and UI indicators for direct xAI API vs OpenRouter routing (server.py, app.js).",
-      "status": "CODE_REVIEW",
+      "status": "MERGED",
       "priority": "MEDIUM",
       "createdAt": "2026-03-30T07:24:23Z",
-      "updatedAt": "2026-03-30T15:50:50Z",
+      "updatedAt": "2026-03-30T15:50:54Z",
       "worktreeId": "feature/REQ-1774855463-x-ai-direct-api"
     },
     {

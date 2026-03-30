@@ -1,7 +1,7 @@
 # x-ai-direct api
 
 **ID**: REQ-1774855463  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T07:24:23Z  
 

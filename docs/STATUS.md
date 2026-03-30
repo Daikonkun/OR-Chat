@@ -8,12 +8,10 @@ Kanban-style view of all requirements and their current state.
 ## IN_PROGRESS (0)
 
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774855463: x-ai-direct api (priority: MEDIUM)
-  - Worktree: feature/REQ-1774855463-x-ai-direct-api
 
-## MERGED (22)
+## MERGED (23)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -55,6 +53,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output
 * REQ-1774855194: Review follow-up: proper base64 validation for image rendering (priority: HIGH)
   - Worktree: feature/REQ-1774855194-review-follow-up-proper-base64-validation-for-image-rendering
+* REQ-1774855463: x-ai-direct api (priority: MEDIUM)
+  - Worktree: feature/REQ-1774855463-x-ai-direct-api
 * REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
   - Worktree: none
 * REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
