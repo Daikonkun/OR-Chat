@@ -10,6 +10,8 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774770298: Review follow-up: separate manifest schema from data
 * [MERGED] REQ-1774770305: Review follow-up: add missing prompt files for advertised slash commands
 * [MERGED] REQ-1774800055: production CORS and domain handling
+* [PROPOSED] REQ-1774855175: Review follow-up: secure image URL validation in picture output
+* [PROPOSED] REQ-1774855194: Review follow-up: proper base64 validation for image rendering
 
 ## Medium Priority
 * [DEPLOYED] REQ-1774628144: Review follow-up: align slash commands with actual skill invocations

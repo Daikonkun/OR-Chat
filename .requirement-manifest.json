@@ -251,6 +251,15 @@
       "priority": "HIGH",
       "createdAt": "2026-03-30T07:19:54Z",
       "updatedAt": "2026-03-30T07:19:54Z"
+    },
+    {
+      "id": "REQ-1774855463",
+      "name": "x-ai-direct api",
+      "description": "add support for direct API key import from xAI, note to differentiate on the UI to distinguish direct API vs OpenRouter API",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-30T07:24:23Z",
+      "updatedAt": "2026-03-30T07:24:23Z"
     }
   ]
 }

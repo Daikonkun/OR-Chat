@@ -45,7 +45,8 @@ when I asked for image generation in the chat, the LLM returns that it is a text
 
 ## Dependencies
 
-None
+- REQ-1774855175: Review follow-up: secure image URL validation in picture output
+- REQ-1774855194: Review follow-up: proper base64 validation for image rendering
 
 ## Worktree
 

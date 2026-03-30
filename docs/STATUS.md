@@ -2,8 +2,12 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (0)
+## PROPOSED (2)
 
+* REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
+  - Worktree: none
+* REQ-1774855194: Review follow-up: proper base64 validation for image rendering (priority: HIGH)
+  - Worktree: none
 
 ## IN_PROGRESS (1)
 
@@ -73,7 +77,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 23
+- Total Requirements: 25
 - Deployed: 2 (8%)
 - In Progress: 1
 - Blocked: 0
