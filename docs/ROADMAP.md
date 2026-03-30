@@ -12,6 +12,8 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774800055: production CORS and domain handling
 * [PROPOSED] REQ-1774855175: Review follow-up: secure image URL validation in picture output
 * [PROPOSED] REQ-1774855194: Review follow-up: proper base64 validation for image rendering
+* [IN_PROGRESS] REQ-1774858151: Review follow-up: verify and configure xAI API endpoint
+* [PROPOSED] REQ-1774858263: Review follow-up: add xAI API key format validation
 
 ## Medium Priority
 * [DEPLOYED] REQ-1774628144: Review follow-up: align slash commands with actual skill invocations

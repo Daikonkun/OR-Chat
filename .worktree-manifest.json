@@ -71,6 +71,17 @@
       ],
       "createdAt": "2026-03-30T07:28:30Z",
       "status": "ACTIVE"
+    },
+    {
+      "id": "feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint",
+      "branch": "feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774858151"
+      ],
+      "createdAt": "2026-03-30T08:23:42Z",
+      "status": "ACTIVE"
     }
   ]
 }

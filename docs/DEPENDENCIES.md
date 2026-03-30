@@ -54,3 +54,7 @@ REQ-1774855194: Review follow-up: proper base64 validation for image rendering (
 
 REQ-1774855463: x-ai-direct api (no dependencies)
 
+REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (no dependencies)
+
+REQ-1774858263: Review follow-up: add xAI API key format validation (no dependencies)
+

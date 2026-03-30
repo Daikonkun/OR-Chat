@@ -66,7 +66,8 @@ add support for direct API key import from xAI, note to differentiate on the UI 
 
 ## Dependencies
 
-None
+- REQ-1774858151: Review follow-up: verify and configure xAI API endpoint
+- REQ-1774858263: Review follow-up: add xAI API key format validation
 
 ## Worktree
 

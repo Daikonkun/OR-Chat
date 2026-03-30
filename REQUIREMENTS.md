@@ -30,10 +30,12 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774855175 | Review follow-up: secure image URL validation in picture output | PROPOSED | HIGH | — | 2026-03-30 | 2026-03-30 |
 | REQ-1774855194 | Review follow-up: proper base64 validation for image rendering | PROPOSED | HIGH | — | 2026-03-30 | 2026-03-30 |
 | REQ-1774855463 | x-ai-direct api | IN_PROGRESS | MEDIUM | feature/REQ-1774855463-x-ai-direct-api | 2026-03-30 | 2026-03-30 |
+| REQ-1774858151 | Review follow-up: verify and configure xAI API endpoint | IN_PROGRESS | HIGH | feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint | 2026-03-30 | 2026-03-30 |
+| REQ-1774858263 | Review follow-up: add xAI API key format validation | PROPOSED | HIGH | — | 2026-03-30 | 2026-03-30 |
 
 ## Status Breakdown
-- **Proposed**: 2
-- **In Progress**: 2
+- **Proposed**: 3
+- **In Progress**: 3
 - **Code Review**: 1
 - **Merged**: 16
 - **Deployed**: 2
@@ -46,6 +48,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-30T07:28:30Z
+* Last updated: 2026-03-30T08:23:42Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`
