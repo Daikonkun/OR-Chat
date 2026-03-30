@@ -36,16 +36,17 @@ Port the direct xAI API routing from server.py to the Vercel serverless function
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support.md`.
-   - **Summary**: Port the direct xAI API routing from server.py to the Vercel serverless function
-   - **Key criteria**: - [ ] `api/models.js` returns `uses_direct_api: true` for x-ai models when `XAI_API_KEY` env var is 
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: **Approach**: Port the direct xAI API routing logic from `server.py` (lines 155–195) into the Vercel
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774887470` and verify success criteria are met.
+1. **Add xAI key validation utility** — Create `api/utils.js` with `validateXaiApiKey()` (prefix `xai-`, min 8 chars, alphanumeric + hyphens). Shared by `api/models.js`, `api/chat.js`, and `api/imagine.js`.
 
-**Last updated**: 2026-03-30T16:19:27Z
+2. **Update `api/models.js`** — Read `XAI_API_KEY` and `XAI_BASE` env vars. Add `uses_direct_api` field to each x-ai model when key is valid. No change to OpenRouter model fetching.
+
+3. **Update `api/chat.js`** — When model author is `x-ai` and `XAI_API_KEY` is valid: route to `${XAI_BASE}chat/completions` with stripped model ID (remove `x-ai/` prefix). Fall back to OpenRouter otherwise. Preserve streaming proxy behavior.
+
+4. **Create `api/imagine.js`** — New serverless function proxying image generation requests to xAI Grok Imagine API (`${XAI_BASE}images/generations`). Accept prompt + optional params, return image URL/base64.
+
+5. **Update `vercel.json`** — Add route `{ "src": "/api/imagine", "dest": "/api/imagine" }`.
+
+**Last updated**: 2026-03-30T16:20:00Z
 
 ## Dependencies
 
