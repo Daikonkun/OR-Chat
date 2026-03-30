@@ -52,3 +52,5 @@ REQ-1774855175: Review follow-up: secure image URL validation in picture output 
 
 REQ-1774855194: Review follow-up: proper base64 validation for image rendering (no dependencies)
 
+REQ-1774855463: x-ai-direct api (no dependencies)
+

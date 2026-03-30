@@ -9,10 +9,12 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774855194: Review follow-up: proper base64 validation for image rendering (priority: HIGH)
   - Worktree: none
 
-## IN_PROGRESS (1)
+## IN_PROGRESS (2)
 
 * REQ-1774851880: allow picture output (priority: MEDIUM)
   - Worktree: feature/REQ-1774851880-allow-picture-output
+* REQ-1774855463: x-ai-direct api (priority: MEDIUM)
+  - Worktree: feature/REQ-1774855463-x-ai-direct-api
 
 ## CODE_REVIEW (1)
 
@@ -77,7 +79,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 25
-- Deployed: 2 (8%)
-- In Progress: 1
+- Total Requirements: 26
+- Deployed: 2 (7%)
+- In Progress: 2
 - Blocked: 0
