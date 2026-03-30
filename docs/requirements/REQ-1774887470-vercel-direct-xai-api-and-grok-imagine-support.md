@@ -1,7 +1,7 @@
 # Vercel direct xAI API and Grok Imagine support
 
 **ID**: REQ-1774887470  
-**Status**: PROPOSED  
+**Status**: IN_PROGRESS  
 **Priority**: HIGH  
 **Created**: 2026-03-30T16:17:50Z  
 
@@ -32,6 +32,20 @@ Port the direct xAI API routing from server.py to the Vercel serverless function
 - xAI API request/response format may differ slightly from OpenRouter's wrapper (parameter mapping)
 - Grok Imagine API may have different auth or endpoint patterns — needs xAI docs verification
 - SSE streaming through Vercel serverless has a ~25s execution limit on Hobby plan
+
+
+## Development Plan
+
+1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support.md`.
+   - **Summary**: Port the direct xAI API routing from server.py to the Vercel serverless function
+   - **Key criteria**: - [ ] `api/models.js` returns `uses_direct_api: true` for x-ai models when `XAI_API_KEY` env var is 
+2. Analyse Technical Notes and identify implementation approach.
+   - **Notes**: **Approach**: Port the direct xAI API routing logic from `server.py` (lines 155–195) into the Vercel
+3. Implement changes in the files/scripts referenced by the requirement spec.
+4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
+5. Validate with `./scripts/show-requirement.sh REQ-1774887470` and verify success criteria are met.
+
+**Last updated**: 2026-03-30T16:19:27Z
 
 ## Dependencies
 

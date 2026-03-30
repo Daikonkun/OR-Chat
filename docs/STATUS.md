@@ -2,13 +2,13 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (1)
+## PROPOSED (0)
+
+
+## IN_PROGRESS (1)
 
 * REQ-1774887470: Vercel direct xAI API and Grok Imagine support (priority: HIGH)
-  - Worktree: none
-
-## IN_PROGRESS (0)
-
+  - Worktree: feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support
 
 ## CODE_REVIEW (0)
 
@@ -87,5 +87,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 29
 - Deployed: 2 (6%)
-- In Progress: 0
+- In Progress: 1
 - Blocked: 0
