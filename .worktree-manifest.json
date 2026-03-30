@@ -106,6 +106,17 @@
       "createdAt": "2026-03-30T10:15:57Z",
       "status": "MERGED",
       "mergedAt": "2026-03-30T15:31:05Z"
+    },
+    {
+      "id": "feature/REQ-1774855194-review-follow-up-proper-base64-validation-for-image-rendering",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774855194-review-follow-up-proper-base64-validation-for-image-rendering",
+      "branch": "feature/REQ-1774855194-review-follow-up-proper-base64-validation-for-image-rendering",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774855194"
+      ],
+      "createdAt": "2026-03-30T15:33:32Z",
+      "status": "ACTIVE"
     }
   ]
 }
