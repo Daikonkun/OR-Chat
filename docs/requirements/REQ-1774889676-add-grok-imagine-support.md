@@ -1,7 +1,7 @@
 # add grok imagine support
 
 **ID**: REQ-1774889676  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T16:54:36Z  
 

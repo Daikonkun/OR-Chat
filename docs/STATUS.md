@@ -8,12 +8,10 @@ Kanban-style view of all requirements and their current state.
 ## IN_PROGRESS (0)
 
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774889676: add grok imagine support (priority: MEDIUM)
-  - Worktree: feature/REQ-1774889676-add-grok-imagine-support
 
-## MERGED (25)
+## MERGED (26)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -65,6 +63,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: feature/REQ-1774887470-vercel-direct-xai-api-and-grok-imagine-support
 * REQ-1774888513: Frontend Grok Imagine UI (priority: MEDIUM)
   - Worktree: feature/REQ-1774888513-frontend-grok-imagine-ui
+* REQ-1774889676: add grok imagine support (priority: MEDIUM)
+  - Worktree: feature/REQ-1774889676-add-grok-imagine-support
 
 ## DEPLOYED (2)
 
