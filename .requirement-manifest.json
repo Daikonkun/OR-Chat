@@ -271,6 +271,15 @@
       "priority": "HIGH",
       "createdAt": "2026-03-30T08:09:11Z",
       "updatedAt": "2026-03-30T08:09:11Z"
+    },
+    {
+      "id": "REQ-1774858263",
+      "name": "Review follow-up: add xAI API key format validation",
+      "description": "Source: code-review of REQ-1774855463. Severity: HIGH. Evidence: XAI_API_KEY used without validation; invalid keys only fail on API call. xAI keys typically have specific format (e.g., starting with 'xai-'). Required outcome: add format validation for XAI_API_KEY to catch obvious errors early and provide clear error messages.",
+      "status": "PROPOSED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-30T08:11:03Z",
+      "updatedAt": "2026-03-30T08:11:03Z"
     }
   ]
 }
