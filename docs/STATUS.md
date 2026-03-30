@@ -2,17 +2,17 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (2)
+## PROPOSED (1)
 
-* REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
-  - Worktree: none
 * REQ-1774855194: Review follow-up: proper base64 validation for image rendering (priority: HIGH)
   - Worktree: none
 
-## IN_PROGRESS (3)
+## IN_PROGRESS (4)
 
 * REQ-1774851880: allow picture output (priority: MEDIUM)
   - Worktree: feature/REQ-1774851880-allow-picture-output
+* REQ-1774855175: Review follow-up: secure image URL validation in picture output (priority: HIGH)
+  - Worktree: feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output
 * REQ-1774855463: x-ai-direct api (priority: MEDIUM)
   - Worktree: feature/REQ-1774855463-x-ai-direct-api
 * REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
@@ -85,5 +85,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 28
 - Deployed: 2 (7%)
-- In Progress: 3
+- In Progress: 4
 - Blocked: 0

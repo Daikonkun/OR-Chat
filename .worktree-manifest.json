@@ -94,6 +94,17 @@
       ],
       "createdAt": "2026-03-30T09:39:58Z",
       "status": "ACTIVE"
+    },
+    {
+      "id": "feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output",
+      "branch": "feature/REQ-1774855175-review-follow-up-secure-image-url-validation-in-picture-output",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774855175"
+      ],
+      "createdAt": "2026-03-30T10:15:57Z",
+      "status": "ACTIVE"
     }
   ]
 }
