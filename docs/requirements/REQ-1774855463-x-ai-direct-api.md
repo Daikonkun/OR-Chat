@@ -33,14 +33,34 @@ add support for direct API key import from xAI, note to differentiate on the UI 
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774855463-x-ai-direct-api.md`.
-   - **Summary**: add support for direct API key import from xAI, note to differentiate on the UI 
-   - **Key criteria**: - [ ] Users can input and save a direct xAI API key separately from the OpenRouter API key in the co
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: **Approach**: Add xAI API key configuration to `.env` file and environment variables. Update backend
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774855463` and verify success criteria are met.
+1. **Add XAI_API_KEY environment variable support**
+   - Update `.env.example` to include `XAI_API_KEY=` placeholder
+   - Update documentation to explain dual API key configuration
+   - Test environment variable loading in Python
+
+2. **Modify backend to support direct xAI API routing**
+   - Update `server.py` to check for `XAI_API_KEY` environment variable
+   - Modify chat endpoint to route xAI model requests to direct API when key is available
+   - Implement fallback to OpenRouter when xAI key is not configured
+   - Handle potential differences in API response formats between xAI and OpenRouter
+
+3. **Add UI indicators for API source differentiation**
+   - Update `static/index.html` to add visual indicator (badge, icon, or label) for API source
+   - Modify `static/app.js` to display current API source (xAI direct vs OpenRouter)
+   - Ensure UI updates dynamically based on configured API and selected model
+
+4. **Implement API key configuration interface**
+   - Add xAI API key input field to UI (could be in settings panel or main interface)
+   - Update `static/app.js` to save/load xAI API key from localStorage or backend
+   - Add validation for xAI API key format
+   - Implement clear visual feedback for API key status (valid, invalid, not configured)
+
+5. **Test and validate implementation**
+   - Test with valid xAI API key to verify direct API routing works
+   - Test without xAI API key to ensure OpenRouter fallback works
+   - Verify UI correctly indicates API source for different scenarios
+   - Test configuration persistence across browser sessions
+   - Validate all success criteria are met
 
 **Last updated**: 2026-03-30T07:28:30Z
 

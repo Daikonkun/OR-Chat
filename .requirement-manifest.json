@@ -262,6 +262,15 @@
       "createdAt": "2026-03-30T07:24:23Z",
       "updatedAt": "2026-03-30T07:28:30Z",
       "worktreeId": "feature/REQ-1774855463-x-ai-direct-api"
+    },
+    {
+      "id": "REQ-1774858151",
+      "name": "Review follow-up: verify and configure xAI API endpoint",
+      "description": "Source: code-review of REQ-1774855463. Severity: HIGH. Evidence: server.py hardcodes XAI_BASE = 'https://api.x.ai/v1' which may be incorrect or could change. Required outcome: verify correct xAI API endpoint, make it configurable via environment variable, and add validation.",
+      "status": "PROPOSED",
+      "priority": "HIGH",
+      "createdAt": "2026-03-30T08:09:11Z",
+      "updatedAt": "2026-03-30T08:09:11Z"
     }
   ]
 }
