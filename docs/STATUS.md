@@ -11,23 +11,19 @@ Kanban-style view of all requirements and their current state.
 * REQ-1774858263: Review follow-up: add xAI API key format validation (priority: HIGH)
   - Worktree: none
 
-## IN_PROGRESS (3)
+## IN_PROGRESS (2)
 
 * REQ-1774851880: allow picture output (priority: MEDIUM)
   - Worktree: feature/REQ-1774851880-allow-picture-output
 * REQ-1774855463: x-ai-direct api (priority: MEDIUM)
   - Worktree: feature/REQ-1774855463-x-ai-direct-api
-* REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
-  - Worktree: feature/REQ-1774858151-review-follow-up-verify-and-configure-xai-api-endpoint
 
-## CODE_REVIEW (2)
+## CODE_REVIEW (1)
 
 * REQ-1774800056: environment-driven HTTP-Referer header (priority: MEDIUM)
   - Worktree: none
-* REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
-  - Worktree: none
 
-## MERGED (16)
+## MERGED (17)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -61,6 +57,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 * REQ-1774800055: production CORS and domain handling (priority: HIGH)
   - Worktree: feature/REQ-1774800055-production-cors-and-domain-handling
+* REQ-1774858151: Review follow-up: verify and configure xAI API endpoint (priority: HIGH)
+  - Worktree: none
 
 ## DEPLOYED (2)
 
@@ -87,5 +85,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 28
 - Deployed: 2 (7%)
-- In Progress: 3
+- In Progress: 2
 - Blocked: 0
