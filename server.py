@@ -1,6 +1,8 @@
 import os
 import json
+import logging
 from typing import Optional
+from urllib.parse import urlparse, urljoin
 
 import httpx
 from dotenv import load_dotenv
@@ -8,10 +10,35 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+XAI_API_KEY = os.getenv("XAI_API_KEY", "")
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"
+
+# Configurable xAI API endpoint with validation
+XAI_BASE_DEFAULT = "https://api.x.ai/v1/"
+XAI_BASE_RAW = os.getenv("XAI_BASE", XAI_BASE_DEFAULT)
+
+# Validate XAI_BASE URL
+if XAI_BASE_RAW:
+    try:
+        parsed = urlparse(XAI_BASE_RAW)
+        if not all([parsed.scheme, parsed.netloc]):
+            raise ValueError(f"Invalid XAI_BASE URL: {XAI_BASE_RAW}")
+        # Ensure URL ends with / for proper urljoin behavior with paths
+        XAI_BASE = XAI_BASE_RAW.rstrip('/') + '/'
+    except Exception as e:
+        logger.warning(f"Invalid XAI_BASE URL '{XAI_BASE_RAW}': {e}")
+        logger.warning(f"Falling back to default: {XAI_BASE_DEFAULT}")
+        XAI_BASE = XAI_BASE_DEFAULT
+else:
+    XAI_BASE = XAI_BASE_DEFAULT
+
 ALLOWED_AUTHORS = {"x-ai", "deepseek"}
 
 app = FastAPI(title="OpenRouter Wrapper")
@@ -25,7 +52,7 @@ async def list_models():
 
     async with httpx.AsyncClient(timeout=30) as client:
         resp = await client.get(
-            f"{OPENROUTER_BASE}/models",
+            urljoin(OPENROUTER_BASE, "models"),
             headers={"Authorization": f"Bearer {OPENROUTER_API_KEY}"},
         )
         if resp.status_code != 200:
@@ -49,6 +76,7 @@ async def list_models():
                 "author": author,
                 "context_length": m.get("context_length"),
                 "supports_vision": "image" in json.dumps(m.get("architecture", {})),
+                "uses_direct_api": author == "x-ai" and bool(XAI_API_KEY),  # Indicate if direct xAI API will be used
                 "prompt_price": pricing.get("prompt"),
                 "completion_price": pricing.get("completion"),
             }
@@ -61,10 +89,7 @@ async def list_models():
 
 @app.post("/api/chat")
 async def chat(request: Request):
-    """Proxy a chat completion request to OpenRouter, with streaming support."""
-    if not OPENROUTER_API_KEY:
-        raise HTTPException(status_code=500, detail="OPENROUTER_API_KEY not set")
-
+    """Proxy a chat completion request to OpenRouter or direct xAI API."""
     body = await request.json()
     model = body.get("model")
     messages = body.get("messages", [])
@@ -86,33 +111,58 @@ async def chat(request: Request):
     if author not in ALLOWED_AUTHORS:
         raise HTTPException(status_code=400, detail=f"Model author '{author}' not allowed")
 
-    payload = {
-        "model": model,
-        "messages": messages,
-        "stream": stream,
-    }
+    # Determine which API to use
+    use_direct_xai = (author == "x-ai" and XAI_API_KEY)
+    
+    if use_direct_xai:
+        # Use direct xAI API
+        api_base = XAI_BASE
+        api_key = XAI_API_KEY
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        # xAI API might have different parameter names or requirements
+        # TODO: Investigate xAI API differences and implement proper parameter mapping
+        # For now, use same payload structure
+        payload = {
+            "model": model.split("/")[1] if "/" in model else model,  # Remove "x-ai/" prefix for direct API
+            "messages": messages,
+            "stream": stream,
+        }
+    else:
+        # Use OpenRouter API
+        if not OPENROUTER_API_KEY:
+            raise HTTPException(status_code=500, detail="OPENROUTER_API_KEY not set")
+        
+        api_base = OPENROUTER_BASE
+        api_key = OPENROUTER_API_KEY
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": os.getenv("OPENROUTER_HTTP_REFERER", "http://localhost:8888"),
+            "X-Title": os.getenv("OPENROUTER_X_TITLE", "OpenRouter Local Wrapper"),
+        }
+        payload = {
+            "model": model,
+            "messages": messages,
+            "stream": stream,
+        }
 
     # Forward optional parameters
     for key in ("temperature", "max_tokens", "top_p"):
         if key in body:
             payload[key] = body[key]
 
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json",
-        "HTTP-Referer": os.getenv("OPENROUTER_HTTP_REFERER", "http://localhost:8888"),
-        "X-Title": os.getenv("OPENROUTER_X_TITLE", "OpenRouter Local Wrapper"),
-    }
-
     if stream:
         return StreamingResponse(
-            _stream_response(payload, headers),
+            _stream_response(payload, headers, api_base, use_direct_xai),
             media_type="text/event-stream",
         )
     else:
         async with httpx.AsyncClient(timeout=120) as client:
             resp = await client.post(
-                f"{OPENROUTER_BASE}/chat/completions",
+                urljoin(api_base, "chat/completions"),
                 json=payload,
                 headers=headers,
             )
@@ -121,12 +171,12 @@ async def chat(request: Request):
             return resp.json()
 
 
-async def _stream_response(payload: dict, headers: dict):
-    """Stream SSE chunks from OpenRouter back to the client."""
+async def _stream_response(payload: dict, headers: dict, api_base: str, is_xai_direct: bool = False):
+    """Stream SSE chunks from API back to the client."""
     async with httpx.AsyncClient(timeout=120) as client:
         async with client.stream(
             "POST",
-            f"{OPENROUTER_BASE}/chat/completions",
+            urljoin(api_base, "chat/completions"),
             json=payload,
             headers=headers,
         ) as resp:
