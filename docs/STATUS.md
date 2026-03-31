@@ -5,13 +5,13 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (1)
+## IN_PROGRESS (0)
+
+
+## CODE_REVIEW (1)
 
 * REQ-1774891701: add login session (priority: MEDIUM)
   - Worktree: feature/REQ-1774891701-add-login-session
-
-## CODE_REVIEW (0)
-
 
 ## MERGED (26)
 
@@ -93,5 +93,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 32
 - Deployed: 2 (6%)
-- In Progress: 1
+- In Progress: 0
 - Blocked: 0
