@@ -37,13 +37,14 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774889676 | add grok imagine support | MERGED | MEDIUM | feature/REQ-1774889676-add-grok-imagine-support | 2026-03-30 | 2026-03-30 |
 | REQ-1774891701 | add login session | MERGED | MEDIUM | feature/REQ-1774891701-add-login-session | 2026-03-30 | 2026-03-31 |
 | REQ-1774926063 | Review follow-up: rate-limit login attempts | MERGED | MEDIUM | feature/REQ-1774926063-review-follow-up-rate-limit-login-attempts | 2026-03-31 | 2026-03-31 |
-| REQ-1774929776 | add author provider | CODE_REVIEW | MEDIUM | feature/REQ-1774929776-add-author-provider | 2026-03-31 | 2026-03-31 |
+| REQ-1774929776 | add author provider | MERGED | MEDIUM | feature/REQ-1774929776-add-author-provider | 2026-03-31 | 2026-03-31 |
+| REQ-1774936072 | Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend | PROPOSED | MEDIUM | — | 2026-03-31 | 2026-03-31 |
 
 ## Status Breakdown
-- **Proposed**: 0
+- **Proposed**: 1
 - **In Progress**: 0
-- **Code Review**: 1
-- **Merged**: 28
+- **Code Review**: 0
+- **Merged**: 29
 - **Deployed**: 2
 - **Blocked**: 0
 - **Backlog**: 0
@@ -54,6 +55,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-31T05:46:47Z
+* Last updated: 2026-03-31T05:49:51Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`

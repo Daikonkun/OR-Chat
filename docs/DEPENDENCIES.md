@@ -70,3 +70,5 @@ REQ-1774926063: Review follow-up: rate-limit login attempts (no dependencies)
 
 REQ-1774929776: add author provider (no dependencies)
 
+REQ-1774936072: Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend (no dependencies)
+

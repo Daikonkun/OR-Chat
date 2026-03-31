@@ -1,7 +1,7 @@
 # add author provider
 
 **ID**: REQ-1774929776  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T04:02:57Z  
 
