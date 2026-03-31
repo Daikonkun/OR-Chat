@@ -2,13 +2,13 @@
 
 Kanban-style view of all requirements and their current state.
 
-## PROPOSED (1)
+## PROPOSED (0)
+
+
+## IN_PROGRESS (1)
 
 * REQ-1774936072: Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend (priority: MEDIUM)
-  - Worktree: none
-
-## IN_PROGRESS (0)
-
+  - Worktree: feature/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend
 
 ## CODE_REVIEW (0)
 
@@ -99,5 +99,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 35
 - Deployed: 2 (5%)
-- In Progress: 0
+- In Progress: 1
 - Blocked: 0

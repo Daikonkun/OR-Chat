@@ -191,6 +191,17 @@
       ],
       "createdAt": "2026-03-31T04:04:29Z",
       "status": "ACTIVE"
+    },
+    {
+      "id": "feature/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend",
+      "branch": "feature/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774936072"
+      ],
+      "createdAt": "2026-03-31T06:16:28Z",
+      "status": "ACTIVE"
     }
   ]
 }
