@@ -21,7 +21,7 @@ export function getAllowedAuthors() {
  * Get the full authors config (id + label) for API responses.
  */
 export function getAuthorsConfig() {
-  return authorsConfig;
+  return [...authorsConfig];
 }
 
 const XAI_BASE_DEFAULT = 'https://api.x.ai/v1/';

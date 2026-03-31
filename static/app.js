@@ -79,6 +79,7 @@ async function loadModels() {
 
     filterModelsByAuthor();
   } catch (err) {
+    authorSelect.innerHTML = `<option value="">Error</option>`;
     modelSelect.innerHTML = `<option value="">Error loading models</option>`;
     console.error('Failed to load models:', err);
   }
