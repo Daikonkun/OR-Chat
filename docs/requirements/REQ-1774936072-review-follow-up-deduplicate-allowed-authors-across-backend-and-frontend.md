@@ -11,25 +11,25 @@ Source: code-review of REQ-1774929776. Severity: MEDIUM. Evidence: ALLOWED_AUTHO
 
 ## Success Criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [ ] A single `allowed-authors.json` config file is the sole source of truth for the author list
+- [ ] `api/models.js`, `api/chat.js`, and `server.py` all read from the shared config instead of hardcoding `ALLOWED_AUTHORS`
+- [ ] The frontend author dropdown in `static/index.html` is populated dynamically from the `/api/models` response (no hardcoded `<option>` tags)
+- [ ] Adding or removing an author requires editing only `allowed-authors.json`
 
 ## Technical Notes
 
-(Add implementation notes here)
+- Current duplication: `ALLOWED_AUTHORS` defined in `api/models.js:5`, `api/chat.js:4`, `server.py:78`, and hardcoded `<option>` tags in `static/index.html:20-25`.
+- Approach: create `allowed-authors.json` (array of `{"id": "x-ai", "label": "xAI"}` objects). Backend JS files import it; `server.py` loads it at startup. Frontend builds `<option>` elements from the API response's distinct authors.
+- The `/api/models` endpoint already returns author info per model; the frontend can extract unique authors from that.
 
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend.md`.
-   - **Summary**: Source: code-review of REQ-1774929776. Severity: MEDIUM. Evidence: ALLOWED_AUTHO
-   - **Key criteria**: - [ ] Criterion 1 - [ ] Criterion 2
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: (Add implementation notes here)
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774936072` and verify success criteria are met.
+1. **Create `allowed-authors.json`** — Add a shared config file at repo root with `[{"id": "x-ai", "label": "xAI"}, {"id": "deepseek", "label": "DeepSeek"}, {"id": "xiaomi", "label": "Xiaomi"}, {"id": "minimax", "label": "MiniMax"}]`.
+2. **Update `api/models.js` and `api/chat.js`** — Replace the hardcoded `ALLOWED_AUTHORS` arrays with `require('../allowed-authors.json').map(a => a.id)`. Remove duplicated constant.
+3. **Update `server.py`** — Load `allowed-authors.json` at startup via `json.load()` and build the `ALLOWED_AUTHORS` set from it.
+4. **Update frontend (`static/index.html` + `static/app.js`)** — Remove hardcoded `<option>` tags from `index.html`. In `app.js`, after fetching `/api/models`, extract distinct authors from the response and dynamically populate the `<select id="author-select">` dropdown.
+5. **Validate** — Run `python server.py` locally; verify author dropdown populates dynamically and model filtering still works. Run `./scripts/regenerate-docs.sh` to update docs.
 
 **Last updated**: 2026-03-31T06:16:29Z
 
