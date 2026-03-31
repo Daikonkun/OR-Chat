@@ -88,7 +88,11 @@ if XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
     logger.warning("Update your .env file with a valid key or this may cause API call failures.")
     has_warned_about_invalid_key = True
 
-ALLOWED_AUTHORS = {"x-ai", "deepseek", "xiaomi", "minimax"}
+# Load allowed authors from shared config
+_authors_path = os.path.join(os.path.dirname(__file__), "allowed-authors.json")
+with open(_authors_path, "r") as _f:
+    _authors_config = json.load(_f)
+ALLOWED_AUTHORS = {a["id"] for a in _authors_config}
 
 # ── Session / Auth config ─────────────────────────────
 APP_PASSWORD = os.getenv("APP_PASSWORD", "")
@@ -211,7 +215,7 @@ async def list_models(request: Request, _=Depends(require_auth)):
 
     # Sort: group by author, then alphabetically
     models.sort(key=lambda x: (x["author"], x["name"]))
-    return {"models": models}
+    return {"models": models, "authors": _authors_config}
 
 
 @app.post("/api/chat")

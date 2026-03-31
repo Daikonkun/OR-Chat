@@ -1,0 +1,6 @@
+[
+  { "id": "x-ai", "label": "xAI" },
+  { "id": "deepseek", "label": "DeepSeek" },
+  { "id": "xiaomi", "label": "Xiaomi" },
+  { "id": "minimax", "label": "MiniMax" }
+]
