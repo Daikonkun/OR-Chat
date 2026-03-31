@@ -4,7 +4,7 @@ Kanban-style view of all requirements and their current state.
 
 ## PROPOSED (1)
 
-* REQ-1774891701: add login session (priority: MEDIUM)
+* REQ-1774926063: Review follow-up: rate-limit login attempts (priority: MEDIUM)
   - Worktree: none
 
 ## IN_PROGRESS (0)
@@ -13,7 +13,7 @@ Kanban-style view of all requirements and their current state.
 ## CODE_REVIEW (0)
 
 
-## MERGED (26)
+## MERGED (27)
 
 * REQ-1774630000: Update README for Vibe Master upgrade migration (priority: MEDIUM)
   - Worktree: feature/REQ-1774630000-update-readme-for-vibe-master-upgrade-migration
@@ -67,6 +67,8 @@ Kanban-style view of all requirements and their current state.
   - Worktree: feature/REQ-1774888513-frontend-grok-imagine-ui
 * REQ-1774889676: add grok imagine support (priority: MEDIUM)
   - Worktree: feature/REQ-1774889676-add-grok-imagine-support
+* REQ-1774891701: add login session (priority: MEDIUM)
+  - Worktree: feature/REQ-1774891701-add-login-session
 
 ## DEPLOYED (2)
 
@@ -91,7 +93,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 32
+- Total Requirements: 33
 - Deployed: 2 (6%)
 - In Progress: 0
 - Blocked: 0

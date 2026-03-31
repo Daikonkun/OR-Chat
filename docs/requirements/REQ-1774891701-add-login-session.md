@@ -1,7 +1,7 @@
 # add login session
 
 **ID**: REQ-1774891701  
-**Status**: PROPOSED  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-30T17:28:21Z  
 
