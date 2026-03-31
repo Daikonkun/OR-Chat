@@ -596,7 +596,12 @@ loginForm.addEventListener('submit', async (e) => {
     });
 
     if (!resp.ok) {
-      loginError.textContent = 'Invalid password';
+      let errorMsg = 'Invalid password';
+      try {
+        const errData = await resp.json();
+        if (errData.error) errorMsg = errData.error;
+      } catch { /* use default message */ }
+      loginError.textContent = errorMsg;
       loginError.hidden = false;
       loginPassword.select();
       return;

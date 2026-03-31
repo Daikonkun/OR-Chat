@@ -1,9 +1,12 @@
+from __future__ import annotations
+
 import datetime
 import os
 import json
 import hmac
 import secrets
 import logging
+import time
 from urllib.parse import urlparse, urljoin
 
 import httpx
@@ -99,6 +102,55 @@ APP_PASSWORD = os.getenv("APP_PASSWORD", "")
 SESSION_SECRET = os.getenv("SESSION_SECRET", "") or secrets.token_hex(32)
 SESSION_TTL_HOURS = int(os.getenv("SESSION_TTL_HOURS", "24"))
 
+# ── Rate-limit config ─────────────────────────────────
+RATE_LIMIT_MAX_ATTEMPTS = int(os.getenv("RATE_LIMIT_MAX_ATTEMPTS", "5"))
+RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("RATE_LIMIT_WINDOW_SECONDS", "900"))
+
+# In-process rate-limit store: {ip: (fail_count, window_start_timestamp)}
+_login_attempts: dict[str, tuple[int, float]] = {}
+_last_sweep: float = 0.0
+
+def _sweep_expired():
+    """Remove expired entries from the rate-limit store (at most once per window)."""
+    global _last_sweep
+    now = time.time()
+    if now - _last_sweep < RATE_LIMIT_WINDOW_SECONDS:
+        return
+    _last_sweep = now
+    expired = [ip for ip, (_, ws) in _login_attempts.items()
+               if now - ws >= RATE_LIMIT_WINDOW_SECONDS]
+    for ip in expired:
+        del _login_attempts[ip]
+
+def _check_rate_limit(ip: str) -> int | None:
+    """Check if IP is rate-limited. Returns seconds until reset if limited, else None."""
+    record = _login_attempts.get(ip)
+    if record is None:
+        return None
+    count, window_start = record
+    elapsed = time.time() - window_start
+    if elapsed >= RATE_LIMIT_WINDOW_SECONDS:
+        # Window expired — clear record
+        del _login_attempts[ip]
+        return None
+    if count >= RATE_LIMIT_MAX_ATTEMPTS:
+        return int(RATE_LIMIT_WINDOW_SECONDS - elapsed) + 1
+    return None
+
+def _record_failed_attempt(ip: str):
+    """Record a failed login attempt for the given IP."""
+    _sweep_expired()
+    record = _login_attempts.get(ip)
+    now = time.time()
+    if record is None or (now - record[1]) >= RATE_LIMIT_WINDOW_SECONDS:
+        _login_attempts[ip] = (1, now)
+    else:
+        _login_attempts[ip] = (record[0] + 1, record[1])
+
+def _clear_rate_limit(ip: str):
+    """Clear rate-limit record on successful login."""
+    _login_attempts.pop(ip, None)
+
 def auth_enabled() -> bool:
     """Auth is active only when APP_PASSWORD is configured."""
     return bool(APP_PASSWORD)
@@ -134,11 +186,26 @@ async def login(request: Request):
     if not auth_enabled():
         return {"ok": True}
 
+    client_ip = request.client.host if request.client else "unknown"
+
+    # Check rate limit before processing
+    retry_after = _check_rate_limit(client_ip)
+    if retry_after is not None:
+        response = JSONResponse(
+            {"error": "Too many failed login attempts. Try again later."},
+            status_code=429,
+        )
+        response.headers["Retry-After"] = str(retry_after)
+        return response
+
     body = await request.json()
     password = body.get("password", "")
 
     if not hmac.compare_digest(password, APP_PASSWORD):
+        _record_failed_attempt(client_ip)
         raise HTTPException(status_code=401, detail="Invalid password")
+
+    _clear_rate_limit(client_ip)
 
     token = create_session_token()
     response = JSONResponse({"ok": True})
