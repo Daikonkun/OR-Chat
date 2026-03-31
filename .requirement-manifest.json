@@ -353,10 +353,10 @@
       "id": "REQ-1774936072",
       "name": "Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend",
       "description": "Source: code-review of REQ-1774929776. Severity: MEDIUM. Evidence: ALLOWED_AUTHORS is defined independently in api/models.js, api/chat.js, server.py, and static/index.html (hardcoded <option> tags). Adding a new author requires updating 4 files, and the chat.js copy was missed during initial implementation. Required outcome: consolidate the author list into a single source of truth — either a shared config consumed by both Vercel functions and server.py, or dynamically populate the frontend author dropdown from the API response's distinct authors.",
-      "status": "CODE_REVIEW",
+      "status": "MERGED",
       "priority": "MEDIUM",
       "createdAt": "2026-03-31T05:47:52Z",
-      "updatedAt": "2026-03-31T07:15:55Z",
+      "updatedAt": "2026-03-31T07:53:19Z",
       "worktreeId": "feature/REQ-1774936072-review-follow-up-deduplicate-allowed-authors-across-backend-and-frontend"
     }
   ]

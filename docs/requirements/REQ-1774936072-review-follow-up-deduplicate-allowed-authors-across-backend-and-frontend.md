@@ -1,7 +1,7 @@
 # Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend
 
 **ID**: REQ-1774936072  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T05:47:52Z  
 

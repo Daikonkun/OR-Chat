@@ -39,7 +39,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774891701: add login session
 * [MERGED] REQ-1774926063: Review follow-up: rate-limit login attempts
 * [MERGED] REQ-1774929776: add author provider
-* [CODE_REVIEW] REQ-1774936072: Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend
+* [MERGED] REQ-1774936072: Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend
 
 ## Low Priority
 * [MERGED] REQ-1774632175: Review follow-up: polish upgrade guide in README
