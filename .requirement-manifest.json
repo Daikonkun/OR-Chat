@@ -337,6 +337,15 @@
       "createdAt": "2026-03-31T03:01:03Z",
       "updatedAt": "2026-03-31T03:37:07Z",
       "worktreeId": "feature/REQ-1774926063-review-follow-up-rate-limit-login-attempts"
+    },
+    {
+      "id": "REQ-1774929776",
+      "name": "add author provider",
+      "description": "add more model selection from OpenRouter, and for avoidance of a messy UI, add a selector or model author first, and then a secondary selector for models provided by that specific author. for xAI, maintain its current status of using direct API. initial author list is 'deepseek, xiaomi, minimax'",
+      "status": "PROPOSED",
+      "priority": "MEDIUM",
+      "createdAt": "2026-03-31T04:02:57Z",
+      "updatedAt": "2026-03-31T04:02:57Z"
     }
   ]
 }
