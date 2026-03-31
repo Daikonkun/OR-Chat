@@ -342,10 +342,10 @@
       "id": "REQ-1774929776",
       "name": "add author provider",
       "description": "add more model selection from OpenRouter, and for avoidance of a messy UI, add a selector or model author first, and then a secondary selector for models provided by that specific author. for xAI, maintain its current status of using direct API. initial author list is 'deepseek, xiaomi, minimax'",
-      "status": "IN_PROGRESS",
+      "status": "CODE_REVIEW",
       "priority": "MEDIUM",
       "createdAt": "2026-03-31T04:02:57Z",
-      "updatedAt": "2026-03-31T04:04:29Z",
+      "updatedAt": "2026-03-31T05:46:47Z",
       "notes": "Add two-tier author→model selector UI; extend ALLOWED_AUTHORS to include xiaomi and minimax; preserve xAI direct-API routing",
       "worktreeId": "feature/REQ-1774929776-add-author-provider"
     }

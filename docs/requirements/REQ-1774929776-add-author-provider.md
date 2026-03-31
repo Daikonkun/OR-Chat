@@ -1,7 +1,7 @@
 # add author provider
 
 **ID**: REQ-1774929776  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T04:02:57Z  
 
@@ -39,16 +39,18 @@ add more model selection from OpenRouter, and for avoidance of a messy UI, add a
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774929776-add-author-provider.md`.
-   - **Summary**: add more model selection from OpenRouter, and for avoidance of a messy UI, add a
-   - **Key criteria**: - [ ] A primary "Author" dropdown appears in the UI, listing at minimum: xAI, DeepSeek, Xiaomi, Mini
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: **Backend (`api/models.js`)**:
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774929776` and verify success criteria are met.
+1. **Extend backend model list** — In `api/models.js`, add `'xiaomi'` and `'minimax'` to the `ALLOWED_AUTHORS` array. Keep the flat response shape (the frontend already groups by `m.author`).
+2. **Add author selector to HTML** — In `static/index.html`, insert an `<select id="author-select">` before `#model-select` inside `<header .controls>`. Pre-populate with static options: xAI, DeepSeek, Xiaomi, MiniMax (values matching OpenRouter author slugs: `x-ai`, `deepseek`, `xiaomi`, `minimax`).
+3. **Wire two-tier selection logic** — In `static/app.js`:
+   - Cache the full model list from `/api/models` on load.
+   - On `#author-select` change, filter the cache by author and rebuild `#model-select` options.
+   - Preserve `modelMeta`, `updateApiBadge()`, and the `⚡ xAI Direct` badge.
+   - Persist last-selected author in `localStorage`.
+   - Auto-select the first author on initial load (default to `x-ai` if available).
+4. **Style the author selector** — In `static/style.css`, add styles for `#author-select` consistent with the existing `#model-select` styling inside `.controls`.
+5. **Validate end-to-end** — Verify chat, vision upload, and `/imagine` still work; confirm xAI direct-API badge displays; confirm all four authors appear and filter correctly.
 
-**Last updated**: 2026-03-31T04:04:29Z
+**Last updated**: 2026-03-31T04:05:00Z
 
 ## Dependencies
 
