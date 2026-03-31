@@ -180,6 +180,17 @@
       ],
       "createdAt": "2026-03-31T03:13:35Z",
       "status": "ACTIVE"
+    },
+    {
+      "id": "feature/REQ-1774929776-add-author-provider",
+      "path": "/Users/bluoaa/Desktop/Coding/feature/REQ-1774929776-add-author-provider",
+      "branch": "feature/REQ-1774929776-add-author-provider",
+      "baseBranch": "main",
+      "requirementIds": [
+        "REQ-1774929776"
+      ],
+      "createdAt": "2026-03-31T04:04:29Z",
+      "status": "ACTIVE"
     }
   ]
 }

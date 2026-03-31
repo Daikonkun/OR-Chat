@@ -68,3 +68,5 @@ REQ-1774891701: add login session (no dependencies)
 
 REQ-1774926063: Review follow-up: rate-limit login attempts (no dependencies)
 
+REQ-1774929776: add author provider (no dependencies)
+
