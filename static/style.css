@@ -13,6 +13,93 @@
   --radius: 8px;
 }
 
+/* Login overlay */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#login-overlay[hidden] { display: none; }
+
+#login-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  width: 340px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+#login-form h2 {
+  font-size: 1.3rem;
+  color: var(--text);
+}
+
+#login-form p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+#login-password {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  width: 100%;
+  font-family: inherit;
+}
+
+#login-password:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#login-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#login-btn:hover { opacity: 0.85; }
+#login-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+#login-error {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+#login-error[hidden] { display: none; }
+
+/* Logout button */
+#logout-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.2s;
+}
+#logout-btn:hover { background: var(--accent); color: #fff; }
+#logout-btn[hidden] { display: none; }
+
 html, body {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

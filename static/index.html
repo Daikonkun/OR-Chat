@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div id="app">
+  <!-- Login overlay -->
+  <div id="login-overlay">
+    <form id="login-form">
+      <h2>🔒 Login Required</h2>
+      <p>Enter the password to access OpenRouter Chat.</p>
+      <input type="password" id="login-password" placeholder="Password" autocomplete="current-password" autofocus>
+      <button type="submit" id="login-btn">Sign In</button>
+      <div id="login-error" hidden></div>
+    </form>
+  </div>
+
+  <div id="app" hidden>
     <header>
       <h1>OpenRouter Chat</h1>
       <div class="controls">
@@ -17,6 +28,7 @@
         <span id="api-badge" class="api-badge" hidden></span>
         <button id="new-chat-btn" title="New chat">+ New</button>
         <button id="nsfw-toggle-btn" title="Toggle NSFW mode">🔞</button>
+        <button id="logout-btn" title="Logout" hidden>🚪</button>
       </div>
     </header>
 

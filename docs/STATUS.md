@@ -4,16 +4,14 @@ Kanban-style view of all requirements and their current state.
 
 ## PROPOSED (1)
 
-* REQ-1774926063: Review follow-up: rate-limit login attempts (priority: MEDIUM)
+* REQ-1774891701: add login session (priority: MEDIUM)
   - Worktree: none
 
 ## IN_PROGRESS (0)
 
 
-## CODE_REVIEW (1)
+## CODE_REVIEW (0)
 
-* REQ-1774891701: add login session (priority: MEDIUM)
-  - Worktree: feature/REQ-1774891701-add-login-session
 
 ## MERGED (26)
 
@@ -93,7 +91,7 @@ Kanban-style view of all requirements and their current state.
   - Worktree: none
 
 ## Stats
-- Total Requirements: 33
+- Total Requirements: 32
 - Deployed: 2 (6%)
 - In Progress: 0
 - Blocked: 0

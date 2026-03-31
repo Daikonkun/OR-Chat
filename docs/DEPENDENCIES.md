@@ -66,5 +66,3 @@ REQ-1774889676: add grok imagine support (no dependencies)
 
 REQ-1774891701: add login session (no dependencies)
 
-REQ-1774926063: Review follow-up: rate-limit login attempts (no dependencies)
-

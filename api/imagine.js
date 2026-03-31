@@ -1,6 +1,6 @@
 // Vercel Serverless Function: Proxy image generation to xAI Grok Imagine API
 
-import { validateXaiApiKey, getXaiBase, setCorsHeaders } from './utils.js';
+import { validateXaiApiKey, getXaiBase, setCorsHeaders, requireAuth } from './utils.js';
 
 const ALLOWED_MODELS = ['grok-imagine-image', 'grok-imagine-image-pro'];
 const ALLOWED_ASPECT_RATIOS = ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'];
@@ -16,6 +16,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (!requireAuth(req, res)) return;
 
   const xaiKey = process.env.XAI_API_KEY;
   if (!validateXaiApiKey(xaiKey)) {

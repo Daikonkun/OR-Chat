@@ -1,13 +1,16 @@
+import datetime
 import os
 import json
+import hmac
+import secrets
 import logging
-from typing import Optional
 from urllib.parse import urlparse, urljoin
 
 import httpx
+import jwt
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import StreamingResponse
+from fastapi import FastAPI, HTTPException, Request, Depends
+from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 # Configure logging
@@ -87,11 +90,89 @@ if XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
 
 ALLOWED_AUTHORS = {"x-ai", "deepseek"}
 
+# ── Session / Auth config ─────────────────────────────
+APP_PASSWORD = os.getenv("APP_PASSWORD", "")
+SESSION_SECRET = os.getenv("SESSION_SECRET", "") or secrets.token_hex(32)
+SESSION_TTL_HOURS = int(os.getenv("SESSION_TTL_HOURS", "24"))
+
+def auth_enabled() -> bool:
+    """Auth is active only when APP_PASSWORD is configured."""
+    return bool(APP_PASSWORD)
+
+def create_session_token() -> str:
+    """Create a signed JWT session token."""
+    exp = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=SESSION_TTL_HOURS)
+    return jwt.encode({"exp": exp}, SESSION_SECRET, algorithm="HS256")
+
+def verify_session_token(token: str) -> bool:
+    """Verify a JWT session token. Returns True if valid and not expired."""
+    try:
+        jwt.decode(token, SESSION_SECRET, algorithms=["HS256"])
+        return True
+    except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
+        return False
+
+async def require_auth(request: Request):
+    """FastAPI dependency that enforces session auth on protected routes."""
+    if not auth_enabled():
+        return  # No password configured — auth disabled
+    token = request.cookies.get("session_token")
+    if not token or not verify_session_token(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
 app = FastAPI(title="OpenRouter Wrapper")
 
 
+# ── Login / Session endpoints ─────────────────────────
+@app.post("/api/login")
+async def login(request: Request):
+    """Validate password and issue a session cookie."""
+    if not auth_enabled():
+        return {"ok": True}
+
+    body = await request.json()
+    password = body.get("password", "")
+
+    if not hmac.compare_digest(password, APP_PASSWORD):
+        raise HTTPException(status_code=401, detail="Invalid password")
+
+    token = create_session_token()
+    response = JSONResponse({"ok": True})
+    is_secure = request.url.scheme == "https"
+    response.set_cookie(
+        key="session_token",
+        value=token,
+        httponly=True,
+        secure=is_secure,
+        samesite="strict",
+        max_age=SESSION_TTL_HOURS * 3600,
+        path="/",
+    )
+    return response
+
+
+@app.get("/api/session")
+async def check_session(request: Request):
+    """Return 200 if session is valid (or auth disabled), 401 otherwise."""
+    if not auth_enabled():
+        return {"authenticated": True, "authRequired": False}
+
+    token = request.cookies.get("session_token")
+    if not token or not verify_session_token(token):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    return {"authenticated": True, "authRequired": True}
+
+
+@app.post("/api/logout")
+async def logout():
+    """Clear the session cookie."""
+    response = JSONResponse({"ok": True})
+    response.delete_cookie(key="session_token", path="/")
+    return response
+
+
 @app.get("/api/models")
-async def list_models():
+async def list_models(request: Request, _=Depends(require_auth)):
     """Fetch models from OpenRouter, filtered to allowed authors."""
     if not OPENROUTER_API_KEY:
         raise HTTPException(status_code=500, detail="OPENROUTER_API_KEY not set")
@@ -134,7 +215,7 @@ async def list_models():
 
 
 @app.post("/api/chat")
-async def chat(request: Request):
+async def chat(request: Request, _=Depends(require_auth)):
     """Proxy a chat completion request to OpenRouter or direct xAI API."""
     body = await request.json()
     model = body.get("model")
@@ -250,7 +331,7 @@ ALLOWED_RESOLUTIONS = {"1k", "2k"}
 
 
 @app.post("/api/imagine")
-async def imagine(request: Request):
+async def imagine(request: Request, _=Depends(require_auth)):
     """Proxy image generation requests to the xAI Grok Imagine API."""
     if not validate_xai_api_key(XAI_API_KEY):
         raise HTTPException(

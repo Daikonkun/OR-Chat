@@ -5,6 +5,13 @@ let isStreaming = false;
 let nsfwMode = localStorage.getItem('nsfwMode') === 'true';
 
 // ── DOM refs ──────────────────────────────────────────
+const loginOverlay  = document.getElementById('login-overlay');
+const loginForm     = document.getElementById('login-form');
+const loginPassword = document.getElementById('login-password');
+const loginBtn      = document.getElementById('login-btn');
+const loginError    = document.getElementById('login-error');
+const appDiv        = document.getElementById('app');
+const logoutBtn     = document.getElementById('logout-btn');
 const modelSelect   = document.getElementById('model-select');
 const messagesDiv   = document.getElementById('messages');
 const chatForm      = document.getElementById('chat-form');
@@ -41,6 +48,7 @@ nsfwToggleBtn.addEventListener('click', () => {
 async function loadModels() {
   try {
     const resp = await fetch('/api/models');
+    if (handle401(resp)) return;
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
 
@@ -168,6 +176,8 @@ async function streamAssistantResponse(model) {
         stream: true,
       }),
     });
+
+    if (handle401(resp)) return;
 
     if (!resp.ok) {
       const errText = await resp.text();
@@ -454,6 +464,8 @@ async function generateImage(prompt) {
       body: JSON.stringify({ prompt, model: 'grok-imagine-image-pro', aspect_ratio }),
     });
 
+    if (handle401(resp)) return;
+
     if (!resp.ok) {
       const errData = await resp.json().catch(() => ({ error: resp.statusText }));
       contentEl.innerHTML = `<span class="error-text">Image generation failed: ${escapeHtml(typeof errData.error === 'string' ? errData.error : JSON.stringify(errData.error))}</span>`;
@@ -526,5 +538,84 @@ newChatBtn.addEventListener('click', () => {
   messageInput.focus();
 });
 
+// ── Session / Login ───────────────────────────────────
+function showLogin() {
+  loginOverlay.hidden = false;
+  appDiv.hidden = true;
+  logoutBtn.hidden = true;
+  loginPassword.value = '';
+  loginError.hidden = true;
+  loginPassword.focus();
+}
+
+function showApp(authRequired) {
+  loginOverlay.hidden = true;
+  appDiv.hidden = false;
+  logoutBtn.hidden = !authRequired;
+  loadModels();
+  messageInput.focus();
+}
+
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  loginBtn.disabled = true;
+  loginError.hidden = true;
+
+  try {
+    const resp = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: loginPassword.value }),
+    });
+
+    if (!resp.ok) {
+      loginError.textContent = 'Invalid password';
+      loginError.hidden = false;
+      loginPassword.select();
+      return;
+    }
+
+    showApp(true);
+  } catch (err) {
+    loginError.textContent = 'Connection error';
+    loginError.hidden = false;
+  } finally {
+    loginBtn.disabled = false;
+  }
+});
+
+logoutBtn.addEventListener('click', async () => {
+  try {
+    await fetch('/api/logout', { method: 'POST' });
+  } catch { /* ignore */ }
+  conversationMessages = [];
+  messagesDiv.innerHTML = '';
+  showLogin();
+});
+
+// Handle 401 on any API call — redirect to login
+function handle401(resp) {
+  if (resp.status === 401) {
+    showLogin();
+    return true;
+  }
+  return false;
+}
+
 // ── Init ──────────────────────────────────────────────
-loadModels();
+async function init() {
+  try {
+    const resp = await fetch('/api/session');
+    if (resp.ok) {
+      const data = await resp.json();
+      showApp(data.authRequired);
+    } else {
+      showLogin();
+    }
+  } catch {
+    // Network error — show app anyway (might be local dev without auth)
+    showApp(false);
+  }
+}
+
+init();
