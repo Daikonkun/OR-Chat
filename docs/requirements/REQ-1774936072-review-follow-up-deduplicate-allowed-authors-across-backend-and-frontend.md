@@ -1,7 +1,7 @@
 # Review follow-up: deduplicate ALLOWED_AUTHORS across backend and frontend
 
 **ID**: REQ-1774936072  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T05:47:52Z  
 
@@ -11,10 +11,10 @@ Source: code-review of REQ-1774929776. Severity: MEDIUM. Evidence: ALLOWED_AUTHO
 
 ## Success Criteria
 
-- [ ] A single `allowed-authors.json` config file is the sole source of truth for the author list
-- [ ] `api/models.js`, `api/chat.js`, and `server.py` all read from the shared config instead of hardcoding `ALLOWED_AUTHORS`
-- [ ] The frontend author dropdown in `static/index.html` is populated dynamically from the `/api/models` response (no hardcoded `<option>` tags)
-- [ ] Adding or removing an author requires editing only `allowed-authors.json`
+- [x] A single `allowed-authors.json` config file is the sole source of truth for the author list
+- [x] `api/models.js`, `api/chat.js`, and `server.py` all read from the shared config instead of hardcoding `ALLOWED_AUTHORS`
+- [x] The frontend author dropdown in `static/index.html` is populated dynamically from the `/api/models` response (no hardcoded `<option>` tags)
+- [x] Adding or removing an author requires editing only `allowed-authors.json`
 
 ## Technical Notes
 
