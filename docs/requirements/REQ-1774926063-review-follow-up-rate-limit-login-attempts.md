@@ -1,7 +1,7 @@
 # Review follow-up: rate-limit login attempts
 
 **ID**: REQ-1774926063  
-**Status**: CODE_REVIEW  
+**Status**: MERGED  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T03:01:03Z  
 
