@@ -1,16 +1,7 @@
 // Shared utilities for Vercel serverless functions
 
 import { createHmac, timingSafeEqual } from 'crypto';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-let authorsConfig;
-try {
-  authorsConfig = require('../allowed-authors.json');
-} catch {
-  console.error('Could not load allowed-authors.json');
-  authorsConfig = [];
-}
+import authorsConfig from './authors-config.js';
 
 /**
  * Get the list of allowed author IDs from the shared config.

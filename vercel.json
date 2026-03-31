@@ -4,11 +4,6 @@
   "outputDirectory": "static",
   "installCommand": "echo 'No dependencies needed for static deploy'",
   "framework": null,
-  "functions": {
-    "api/**/*.js": {
-      "includeFiles": "allowed-authors.json"
-    }
-  },
   "routes": [
     { "src": "/api/login", "dest": "/api/login" },
     { "src": "/api/logout", "dest": "/api/logout" },
