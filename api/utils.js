@@ -43,7 +43,11 @@ export function setCorsHeaders(res, methods = 'GET, OPTIONS') {
 // ── Session / Auth helpers ────────────────────────────
 
 function getSessionSecret() {
-  return process.env.SESSION_SECRET || 'fallback-dev-secret';
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    throw new Error('SESSION_SECRET env var is required when APP_PASSWORD is set');
+  }
+  return secret;
 }
 
 function getSessionTTL() {

@@ -1,15 +1,15 @@
+import datetime
 import os
 import json
 import hmac
 import secrets
 import logging
-from typing import Optional
 from urllib.parse import urlparse, urljoin
 
 import httpx
 import jwt
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request, Response, Cookie, Depends
+from fastapi import FastAPI, HTTPException, Request, Depends
 from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -98,8 +98,6 @@ SESSION_TTL_HOURS = int(os.getenv("SESSION_TTL_HOURS", "24"))
 def auth_enabled() -> bool:
     """Auth is active only when APP_PASSWORD is configured."""
     return bool(APP_PASSWORD)
-
-import datetime
 
 def create_session_token() -> str:
     """Create a signed JWT session token."""
