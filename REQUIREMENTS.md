@@ -36,9 +36,10 @@ Auto-generated summary of all product requirements. For detailed specs, see indi
 | REQ-1774888513 | Frontend Grok Imagine UI | MERGED | MEDIUM | feature/REQ-1774888513-frontend-grok-imagine-ui | 2026-03-30 | 2026-03-30 |
 | REQ-1774889676 | add grok imagine support | MERGED | MEDIUM | feature/REQ-1774889676-add-grok-imagine-support | 2026-03-30 | 2026-03-30 |
 | REQ-1774891701 | add login session | CODE_REVIEW | MEDIUM | feature/REQ-1774891701-add-login-session | 2026-03-30 | 2026-03-31 |
+| REQ-1774926063 | Review follow-up: rate-limit login attempts | PROPOSED | MEDIUM | — | 2026-03-31 | 2026-03-31 |
 
 ## Status Breakdown
-- **Proposed**: 0
+- **Proposed**: 1
 - **In Progress**: 0
 - **Code Review**: 1
 - **Merged**: 26
@@ -52,6 +53,6 @@ Use `/add-requirement "Feature name" "Description"` to submit requirements.
 
 ---
 
-* Last updated: 2026-03-31T02:38:06Z
+* Last updated: 2026-03-31T03:01:07Z
 * Structured data: See `.requirement-manifest.json`
 * Worktree mapping: See `.worktree-manifest.json`
