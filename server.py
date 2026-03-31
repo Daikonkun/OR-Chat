@@ -88,7 +88,7 @@ if XAI_API_KEY and not validate_xai_api_key(XAI_API_KEY):
     logger.warning("Update your .env file with a valid key or this may cause API call failures.")
     has_warned_about_invalid_key = True
 
-ALLOWED_AUTHORS = {"x-ai", "deepseek"}
+ALLOWED_AUTHORS = {"x-ai", "deepseek", "xiaomi", "minimax"}
 
 # ── Session / Auth config ─────────────────────────────
 APP_PASSWORD = os.getenv("APP_PASSWORD", "")

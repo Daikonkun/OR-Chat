@@ -138,6 +138,16 @@ header h1 {
   justify-content: flex-end;
 }
 
+#author-select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  max-width: 140px;
+}
+
 #model-select {
   background: var(--surface);
   color: var(--text);
