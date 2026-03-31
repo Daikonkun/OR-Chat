@@ -12,6 +12,7 @@ const loginBtn      = document.getElementById('login-btn');
 const loginError    = document.getElementById('login-error');
 const appDiv        = document.getElementById('app');
 const logoutBtn     = document.getElementById('logout-btn');
+const authorSelect  = document.getElementById('author-select');
 const modelSelect   = document.getElementById('model-select');
 const messagesDiv   = document.getElementById('messages');
 const chatForm      = document.getElementById('chat-form');
@@ -29,6 +30,8 @@ const aspectSelect = document.getElementById('aspect-ratio-select');
 
 // Model metadata cache (keyed by model id)
 let modelMeta = {};
+// Full model list cache (all authors)
+let allModels = [];
 
 // Apply persisted NSFW toggle state
 if (nsfwMode) {
@@ -52,38 +55,51 @@ async function loadModels() {
     if (!resp.ok) throw new Error(await resp.text());
     const data = await resp.json();
 
-    modelSelect.innerHTML = '';
+    allModels = data.models || [];
     modelMeta = {};
-    let currentGroup = null;
-    let optgroup = null;
-
-    for (const m of data.models) {
-      if (m.author !== currentGroup) {
-        currentGroup = m.author;
-        optgroup = document.createElement('optgroup');
-        optgroup.label = currentGroup.toUpperCase();
-        modelSelect.appendChild(optgroup);
-      }
-      const opt = document.createElement('option');
-      opt.value = m.id;
-      const ctx = m.context_length ? ` (${(m.context_length / 1000).toFixed(0)}k)` : '';
-      const vision = m.supports_vision ? ' 👁' : '';
-      const direct = m.uses_direct_api ? ' ⚡' : '';
-      opt.textContent = `${m.name}${ctx}${vision}${direct}`;
+    for (const m of allModels) {
       modelMeta[m.id] = m;
-      optgroup.appendChild(opt);
     }
 
-    if (data.models.length === 0) {
-      modelSelect.innerHTML = '<option value="">No models available</option>';
+    // Restore persisted author or default to first option
+    const savedAuthor = localStorage.getItem('selectedAuthor');
+    if (savedAuthor && [...authorSelect.options].some(o => o.value === savedAuthor)) {
+      authorSelect.value = savedAuthor;
     }
 
-    updateApiBadge();
+    filterModelsByAuthor();
   } catch (err) {
     modelSelect.innerHTML = `<option value="">Error loading models</option>`;
     console.error('Failed to load models:', err);
   }
 }
+
+// ── Filter models by selected author ─────────────────
+function filterModelsByAuthor() {
+  const author = authorSelect.value;
+  localStorage.setItem('selectedAuthor', author);
+
+  const filtered = allModels.filter(m => m.author === author);
+  modelSelect.innerHTML = '';
+
+  for (const m of filtered) {
+    const opt = document.createElement('option');
+    opt.value = m.id;
+    const ctx = m.context_length ? ` (${(m.context_length / 1000).toFixed(0)}k)` : '';
+    const vision = m.supports_vision ? ' 👁' : '';
+    const direct = m.uses_direct_api ? ' ⚡' : '';
+    opt.textContent = `${m.name}${ctx}${vision}${direct}`;
+    modelSelect.appendChild(opt);
+  }
+
+  if (filtered.length === 0) {
+    modelSelect.innerHTML = '<option value="">No models available</option>';
+  }
+
+  updateApiBadge();
+}
+
+authorSelect.addEventListener('change', filterModelsByAuthor);
 
 // ── API source badge ──────────────────────────────────
 modelSelect.addEventListener('change', updateApiBadge);
