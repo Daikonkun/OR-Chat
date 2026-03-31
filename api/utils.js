@@ -1,33 +1,15 @@
 // Shared utilities for Vercel serverless functions
 
 import { createHmac, timingSafeEqual } from 'crypto';
-import { readFileSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 let authorsConfig;
 try {
-  authorsConfig = JSON.parse(
-    readFileSync(resolve(__dirname, '..', 'allowed-authors.json'), 'utf-8')
-  );
+  authorsConfig = require('../allowed-authors.json');
 } catch {
-  // Fallback: file may not be at ../  in Vercel's bundled filesystem
-  try {
-    authorsConfig = JSON.parse(
-      readFileSync(resolve(__dirname, 'allowed-authors.json'), 'utf-8')
-    );
-  } catch {
-    // Last resort: use process.cwd() which is typically the project root on Vercel
-    try {
-      authorsConfig = JSON.parse(
-        readFileSync(resolve(process.cwd(), 'allowed-authors.json'), 'utf-8')
-      );
-    } catch {
-      console.error('Could not load allowed-authors.json from any path');
-      authorsConfig = [];
-    }
-  }
+  console.error('Could not load allowed-authors.json');
+  authorsConfig = [];
 }
 
 /**
