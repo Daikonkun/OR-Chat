@@ -37,7 +37,7 @@ Timeline view of all requirements organized by status and priority.
 * [MERGED] REQ-1774888513: Frontend Grok Imagine UI
 * [MERGED] REQ-1774889676: add grok imagine support
 * [MERGED] REQ-1774891701: add login session
-* [PROPOSED] REQ-1774926063: Review follow-up: rate-limit login attempts
+* [IN_PROGRESS] REQ-1774926063: Review follow-up: rate-limit login attempts
 
 ## Low Priority
 * [MERGED] REQ-1774632175: Review follow-up: polish upgrade guide in README
