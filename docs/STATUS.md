@@ -5,13 +5,13 @@ Kanban-style view of all requirements and their current state.
 ## PROPOSED (0)
 
 
-## IN_PROGRESS (1)
+## IN_PROGRESS (0)
+
+
+## CODE_REVIEW (1)
 
 * REQ-1774926063: Review follow-up: rate-limit login attempts (priority: MEDIUM)
   - Worktree: feature/REQ-1774926063-review-follow-up-rate-limit-login-attempts
-
-## CODE_REVIEW (0)
-
 
 ## MERGED (27)
 
@@ -95,5 +95,5 @@ Kanban-style view of all requirements and their current state.
 ## Stats
 - Total Requirements: 33
 - Deployed: 2 (6%)
-- In Progress: 1
+- In Progress: 0
 - Blocked: 0

@@ -1,7 +1,7 @@
 # Review follow-up: rate-limit login attempts
 
 **ID**: REQ-1774926063  
-**Status**: IN_PROGRESS  
+**Status**: CODE_REVIEW  
 **Priority**: MEDIUM  
 **Created**: 2026-03-31T03:01:03Z  
 
@@ -11,25 +11,27 @@ Source: code-review of REQ-1774891701. Severity: MEDIUM. Evidence: Neither serve
 
 ## Success Criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [x] FastAPI `POST /api/login` returns HTTP 429 after more than 5 failed login attempts from the same IP within a 15-minute window
+- [x] Vercel `api/login.js` returns HTTP 429 after more than 5 failed login attempts from the same IP within a 15-minute window
+- [x] Successful logins are not counted toward the rate limit
+- [x] Rate-limit responses include a `Retry-After` header indicating seconds until the window resets
+- [x] Existing tests pass; new test cases cover rate-limit enforcement and window expiry
 
 ## Technical Notes
 
-(Add implementation notes here)
-
+- **FastAPI**: Use an in-process dict keyed by client IP tracking `(count, window_start)`. No new dependency needed — the login endpoint is low-traffic and a simple dict is sufficient for the local dev server.
+- **Vercel**: Use an in-memory `Map` in `api/login.js` (Vercel cold-starts reset state, providing natural cleanup). For production durability, a KV store could be added later.
+- **IP extraction**: FastAPI → `request.client.host`; Vercel → `req.headers['x-forwarded-for']` first segment or `req.socket.remoteAddress`.
+- **Config**: `RATE_LIMIT_MAX_ATTEMPTS=5` and `RATE_LIMIT_WINDOW_SECONDS=900` from env with defaults.
+- Both backends share the same semantics: only **failed** attempts increment the counter; a successful login resets the counter for that IP.
 
 ## Development Plan
 
-1. Review Description, Success Criteria, and Technical Notes in `docs/requirements/REQ-1774926063-review-follow-up-rate-limit-login-attempts.md`.
-   - **Summary**: Source: code-review of REQ-1774891701. Severity: MEDIUM. Evidence: Neither serve
-   - **Key criteria**: - [ ] Criterion 1 - [ ] Criterion 2
-2. Analyse Technical Notes and identify implementation approach.
-   - **Notes**: (Add implementation notes here)
-3. Implement changes in the files/scripts referenced by the requirement spec.
-4. Run `./scripts/regenerate-docs.sh` to update manifests and generated docs.
-5. Validate with `./scripts/show-requirement.sh REQ-1774926063` and verify success criteria are met.
+1. **Add rate limiting to FastAPI `POST /api/login`** in `server.py` — add an in-process rate-limit dict, check/increment on failed attempts, return 429 with `Retry-After` header when exceeded.
+2. **Add rate limiting to Vercel `api/login.js`** — add a module-level `Map` for tracking attempts per IP, same 5-attempt / 15-min logic, return 429 with `Retry-After`.
+3. **Add tests** in `test_validation.py` — test that the 6th failed login within the window gets 429, that the counter resets on success, and that expired windows allow new attempts.
+4. **Regenerate docs** — run `./scripts/regenerate-docs.sh` to update manifests.
+5. **Validate** — run `./scripts/show-requirement.sh REQ-1774926063` and confirm all success criteria are met.
 
 **Last updated**: 2026-03-31T03:13:36Z
 

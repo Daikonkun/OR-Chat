@@ -332,10 +332,10 @@
       "id": "REQ-1774926063",
       "name": "Review follow-up: rate-limit login attempts",
       "description": "Source: code-review of REQ-1774891701. Severity: MEDIUM. Evidence: Neither server.py nor api/login.js limits login attempts, allowing unlimited password guessing attacks against the Vercel deployment. Required outcome: Add rate limiting to POST /api/login on both FastAPI (e.g., slowapi) and Vercel (e.g., in-memory or KV-based counter) backends, returning HTTP 429 after excessive failed attempts within a time window.",
-      "status": "IN_PROGRESS",
+      "status": "CODE_REVIEW",
       "priority": "MEDIUM",
       "createdAt": "2026-03-31T03:01:03Z",
-      "updatedAt": "2026-03-31T03:13:35Z",
+      "updatedAt": "2026-03-31T03:23:26Z",
       "worktreeId": "feature/REQ-1774926063-review-follow-up-rate-limit-login-attempts"
     }
   ]
