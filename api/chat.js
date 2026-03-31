@@ -1,8 +1,8 @@
 // Vercel Serverless Function: Proxy chat completions to OpenRouter or direct xAI API
 
-import { validateXaiApiKey, getXaiBase, setCorsHeaders, requireAuth } from './utils.js';
+import { validateXaiApiKey, getXaiBase, setCorsHeaders, requireAuth, getAllowedAuthors } from './utils.js';
 
-const ALLOWED_AUTHORS = ['x-ai', 'deepseek', 'xiaomi', 'minimax'];
+const ALLOWED_AUTHORS = getAllowedAuthors();
 const OPENROUTER_BASE = 'https://openrouter.ai/api/v1';
 
 export default async function handler(req, res) {

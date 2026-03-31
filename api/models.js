@@ -1,9 +1,9 @@
 // Vercel Serverless Function: List available models
 // Filters to allowed authors
 
-import { validateXaiApiKey, setCorsHeaders, requireAuth } from './utils.js';
+import { validateXaiApiKey, setCorsHeaders, requireAuth, getAllowedAuthors, getAuthorsConfig } from './utils.js';
 
-const ALLOWED_AUTHORS = ['x-ai', 'deepseek', 'xiaomi', 'minimax'];
+const ALLOWED_AUTHORS = getAllowedAuthors();
 
 export default async function handler(req, res) {
   // CORS headers — origin configurable via ALLOWED_ORIGIN env var
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 
     models.sort((a, b) => (a.author > b.author) || (a.author === b.author && a.name > b.name));
 
-    return res.status(200).json({ models });
+    return res.status(200).json({ models, authors: getAuthorsConfig() });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

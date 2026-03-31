@@ -61,6 +61,16 @@ async function loadModels() {
       modelMeta[m.id] = m;
     }
 
+    // Populate author dropdown from API response
+    const authors = data.authors || [];
+    authorSelect.innerHTML = '';
+    for (const a of authors) {
+      const opt = document.createElement('option');
+      opt.value = a.id;
+      opt.textContent = a.label;
+      authorSelect.appendChild(opt);
+    }
+
     // Restore persisted author or default to first option
     const savedAuthor = localStorage.getItem('selectedAuthor');
     if (savedAuthor && [...authorSelect.options].some(o => o.value === savedAuthor)) {

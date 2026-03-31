@@ -1,6 +1,28 @@
 // Shared utilities for Vercel serverless functions
 
 import { createHmac, timingSafeEqual } from 'crypto';
+import { readFileSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const authorsConfig = JSON.parse(
+  readFileSync(resolve(__dirname, '..', 'allowed-authors.json'), 'utf-8')
+);
+
+/**
+ * Get the list of allowed author IDs from the shared config.
+ */
+export function getAllowedAuthors() {
+  return authorsConfig.map(a => a.id);
+}
+
+/**
+ * Get the full authors config (id + label) for API responses.
+ */
+export function getAuthorsConfig() {
+  return authorsConfig;
+}
 
 const XAI_BASE_DEFAULT = 'https://api.x.ai/v1/';
 
